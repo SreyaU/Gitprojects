@@ -1,0 +1,340 @@
+practice questions:
+==================================
+
+🔸 1. Library Management System
+		Problem:
+		Design a system to manage books, members, and borrowing logic.
+
+		Requirements:
+		A base class LibraryItem with common attributes like title, author, and item_id.
+
+		Subclasses Book, Magazine, DVD each with different borrow_duration.
+
+		Method is_overdue() that returns True if the item is overdue.
+
+		Members should be able to borrow multiple items.
+
+		📌 Concepts: Inheritance, Polymorphism, Abstraction, Encapsulation
+
+🔸 2. Online Store Inventory
+		Problem:
+		Create a system to manage products in an online store.
+
+		Requirements:
+		Base class Product with attributes like name, price, stock.
+
+		Subclasses Clothing, Electronics, and Grocery.
+
+		Implement method apply_discount() that behaves differently for each product type.
+
+		Encapsulate sensitive fields like cost_price.
+
+		📌 Concepts: Encapsulation, Inheritance, Polymorphism, Method Overriding
+
+🔸 3. Employee Payroll System
+		Problem:
+		Manage salary calculations for different types of employees.
+
+		Requirements:
+		Abstract class Employee with calculate_salary() as abstract method.
+
+		Subclasses: FullTimeEmployee, PartTimeEmployee, Contractor.
+
+		Each type calculates salary differently (hourly vs monthly vs fixed).
+
+		Add optional bonuses.
+
+		📌 Concepts: Abstraction, Inheritance, Polymorphism, super()
+
+🔸 4. Ride-Sharing App Classes (e.g. Uber/Ola)
+		Problem:
+		Model a simple version of a ride-sharing app.
+
+		Requirements:
+		Classes: User, Driver, Ride.
+
+		Ride has methods to calculate fare() based on distance and type (e.g., Bike, Car, Premium).
+
+		Different drivers have different ratings and commission rates.
+
+		📌 Concepts: Class design, Inheritance, Composition, Polymorphism
+
+🔸 5. ATM Simulation
+		Problem:
+		Build an ATM simulation with users, accounts, and transactions.
+
+		Requirements:
+		Class BankAccount with encapsulated balance.
+
+		Operations: deposit(), withdraw(), check_balance()
+
+		Class ATM to manage multiple users and validate PINs.
+
+		Bonus: Log every transaction with timestamp.
+
+		📌 Concepts: Encapsulation, Classes, Reusability, Composition
+
+🔸 6. Course Management System (for a University)
+		Problem:
+		Model courses, professors, and students.
+
+		Requirements:
+		Abstract class Person → Professor, Student
+
+		Class Course with enrolled students and assigned professor.
+
+		Each student can enroll in multiple courses, but max 5.
+
+		Each professor can teach up to 3 courses.
+
+		📌 Concepts: Abstraction, Inheritance, Relationships between classes
+
+
+7. A mini-project: build a class-based calculator or a contact book using all three method types?
+
+Modify the mock to simulate HTTP status codes.
+
+Log all exceptions to a file using logging.
+
+Retry failed API requests using a loop.
+
+Write unit tests for all exception cases.
+
+
+---------------------------------------------
+
+Absolutely! Let's build both:
+
+---
+
+## ✅ Part 1: Hands-On Practice Problems (with Key Modules)
+
+Each problem is designed to reflect **real-world automation/test tasks**. They increase in complexity gradually.
+
+---
+
+### 🔹 Level 1 – Foundations (os, sys, shutil, glob, re)
+
+1. **Batch Rename Files**
+   🔧 Use: `os`, `re`, `glob`
+   📌 Rename all `.txt` files in a directory using a pattern (e.g., add timestamp prefix).
+
+2. **Clean Up Temporary Files**
+   🔧 Use: `os`, `shutil`, `datetime`
+   📌 Delete files older than 7 days in a folder (automation-like cron cleanup).
+
+3. **Parse Logs for Errors**
+   🔧 Use: `re`, `glob`
+   📌 Extract all lines containing the word `"ERROR"` or `Traceback` from log files.
+
+4. **Build a Mini CLI Tool**
+   🔧 Use: `argparse`, `sys`
+   📌 Create a script that accepts a filename and a keyword, and prints matching lines.
+
+---
+
+### 🔹 Level 2 – Intermediate Automation (requests, json, csv, logging)
+
+5. **Fetch and Save API Data to CSV**
+   🔧 Use: `requests`, `csv`, `json`, `logging`
+   📌 Call a public API (e.g., JSONPlaceholder) and save it to a structured CSV.
+
+6. **Web Page Link Extractor**
+   🔧 Use: `requests`, `re`
+   📌 Download a web page and extract all anchor (`<a href="">`) links.
+
+7. **Retry an API Call on Failure**
+   🔧 Use: `requests`, `time`, `logging`
+   📌 Make an API call with retry logic on failure (e.g., 3 attempts with 2-second gap).
+
+---
+
+### 🔹 Level 3 – System Automation (subprocess, schedule, pathlib)
+
+8. **Automated Git Pull and Backup**
+   🔧 Use: `subprocess`, `datetime`, `shutil`
+   📌 Write a script that pulls a repo and backs up the updated folder to a timestamped zip.
+
+9. **Schedule File Organizer**
+   🔧 Use: `schedule`, `shutil`, `pathlib`
+   📌 Move files from Downloads to categorized folders (images, docs) every 1 minute.
+
+---
+
+### 🔹 Level 4 – Testing Automation (unittest, pytest, mock)
+
+10. **Write Unit Tests for File Parser**
+    🔧 Use: `unittest`, `mock`
+    📌 Build a file parser and test it, mocking file I/O.
+
+11. **Create Test Cases for API Wrapper**
+    🔧 Use: `pytest`, `requests-mock`
+    📌 Write a wrapper class for an API and build robust tests with mocked responses.
+
+---
+
+### 🔹 Bonus: Excel & Email Automation
+
+12. **Auto-Send a Report via Email**
+    🔧 Use: `smtplib`, `email`, `pandas`, `datetime`
+    📌 Create and email a weekly report (e.g., sales or metrics) with a CSV/XLS attachment.
+
+13. **Excel Report Updater**
+    🔧 Use: `openpyxl`, `pandas`
+    📌 Open an Excel file, update a few cells based on logic, and save.
+
+---
+
+## 🧭 Part 2: Recommended Learning Roadmap for Automation + Testing
+
+| Week | Focus Area                    | Topics/Tools                                  | Projects                    |
+| ---- | ----------------------------- | --------------------------------------------- | --------------------------- |
+| 1    | File & OS Automation          | `os`, `shutil`, `glob`, `pathlib`             | File renamer, backup script |
+| 2    | CLI & Argument Parsing        | `sys`, `argparse`, `logging`                  | Build CLI utilities         |
+| 3    | API + Web Automation          | `requests`, `json`, `re`                      | API fetcher, link scraper   |
+| 4    | Scheduling + Subprocess       | `schedule`, `subprocess`, `datetime`          | Cron-like automation        |
+| 5    | CSV, Excel & Email Automation | `csv`, `openpyxl`, `smtplib`                  | Reports & alert systems     |
+| 6    | Unit Testing + Mocking        | `unittest`, `pytest`, `mock`, `requests-mock` | Test your automation tools  |
+| 7    | Bonus: Selenium / Playwright  | Browser automation                            | Auto form filling, scraping |
+
+---
+
+## 📁 Want this as a downloadable roadmap or practice sheet?
+
+I can:
+
+* Export this as a **PDF project sheet**
+* Generate a **starter template for each challenge**
+* Bundle into a ZIP
+
+Just tell me what you'd like next:
+
+* 📄 PDF version?
+* 💻 Project boilerplate code?
+* 📦 Zip of project templates?
+
+Let’s automate your learning, too 😄
+Great! Below are **hands-on starter templates** for real-world automation challenges using essential Python modules. Each script is beginner-friendly, production-minded, and ready to modify and test.
+
+---
+
+### 🧰 01. **Batch Rename Files**
+
+📦 Modules: `os`, `glob`, `datetime`
+
+```python
+import os
+import glob
+from datetime import datetime
+
+def batch_rename_files(folder_path):
+    for file in glob.glob(os.path.join(folder_path, "*.txt")):
+        base = os.path.basename(file)
+        new_name = f"{datetime.now().strftime('%Y%m%d')}_{base}"
+        os.rename(file, os.path.join(folder_path, new_name))
+
+if __name__ == "__main__":
+    batch_rename_files("your/folder/path")
+```
+
+---
+
+### 🧹 02. **Clean Up Old Temp Files**
+
+📦 Modules: `os`, `time`
+
+```python
+import os
+import time
+
+def delete_old_files(folder_path, days=7):
+    cutoff = time.time() - (days * 86400)  # 7 days
+    for filename in os.listdir(folder_path):
+        full_path = os.path.join(folder_path, filename)
+        if os.path.isfile(full_path) and os.path.getmtime(full_path) < cutoff:
+            os.remove(full_path)
+            print(f"Deleted: {full_path}")
+
+if __name__ == "__main__":
+    delete_old_files("your/folder/path")
+```
+
+---
+
+### 📄 03. **Parse and Extract from Log Files**
+
+📦 Modules: `glob`, `re`
+
+```python
+import glob
+import re
+
+def extract_errors(log_folder):
+    for logfile in glob.glob(f"{log_folder}/*.log"):
+        with open(logfile) as f:
+            for line in f:
+                if re.search("ERROR|Traceback", line):
+                    print(line.strip())
+
+if __name__ == "__main__":
+    extract_errors("logs")
+```
+
+---
+
+### 🔍 04. **Mini CLI Tool**
+
+📦 Module: `argparse`
+
+```python
+import argparse
+
+def search_keyword(filename, keyword):
+    with open(filename, 'r') as f:
+        for line in f:
+            if keyword in line:
+                print(line.strip())
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename")
+    parser.add_argument("keyword")
+    args = parser.parse_args()
+
+    search_keyword(args.filename, args.keyword)
+```
+
+---
+
+### 🔁 05. **Fetch API Data and Write to CSV**
+
+📦 Modules: `requests`, `csv`
+
+```python
+import requests
+import csv
+
+def fetch_data_to_csv(api_url, csv_file):
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()
+        with open(csv_file, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=data[0].keys())
+            writer.writeheader()
+            writer.writerows(data)
+    else:
+        print("API request failed")
+
+if __name__ == "__main__":
+    fetch_data_to_csv("https://jsonplaceholder.typicode.com/users", "output.csv")
+```
+
+---
+
+Would you like me to:
+
+* Bundle these into a downloadable `.zip`?
+* Add more templates (like web scraping, PDF processing, Selenium automation)?
+* Build a project roadmap using these templates?
+
+Let me know what direction you'd like to take next 🚀

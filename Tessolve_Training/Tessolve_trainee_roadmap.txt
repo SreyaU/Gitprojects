@@ -1,0 +1,18 @@
+
+🟩 Module 2: Python | Automation
+Session 1  | Python Basics |
+	- Data types, control flow ,functions, OOP principles, file operations - files, json
+	- exception handling, logging, decorators
+	- Regex, JSON, CSV parsing.
+Session 2 | Python Scripting for Automation |
+	- modules, subprocess, adb automation, CLI tools
+	- external libraries-pyshark, requests, 	
+	- robot framework, unit test , pytest
+	- automating test case execution & report generation
+
+🟨 Module 3: Android Internals & Debugging |
+ Session 1 | Android basics |
+	- Android architecture & AOSP overview, adb/fastboot, adb commands
+ Session 2 | Wi-Fi Testing & Logcat Debugging |
+	- types of testing, types of logs, manual testing
+	- Android Wi-Fi test cases, adb logcat, filters, bugreport basics |

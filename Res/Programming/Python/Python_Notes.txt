@@ -1,0 +1,57 @@
+notes:
+===============
+🧠 Python’s Memory Management Model
+Python uses a private heap space to manage memory for objects and data structures.
+
+🧩 Key Concepts
+Concept	Description
+Memory Manager	Handles allocation of memory blocks in the private heap.
+Object-Specific Allocators	Optimize memory for built-in types like lists, dicts, etc.
+Garbage Collector	Automatically frees memory of unreferenced objects.
+Reference Counting	Main mechanism to track whether an object is still in use.
+Dynamic Typing	Objects (not variables) hold type info; allows flexible use.
+
+Interning (for small immutable types)
+
+class Demo:
+    class_var = 10
+
+    def instance_method(self):
+        return f"Called from instance. class_var={self.class_var}"
+
+    @classmethod
+    def class_method(cls):
+        return f"Called from class. class_var={cls.class_var}"
+
+    @staticmethod
+    def static_method():
+        return "Called static method. No access to class or instance"
+Outputs:
+
+python
+Copy
+Edit
+d = Demo()
+
+print(d.instance_method())  # ✅ Uses self
+print(Demo.class_method())  # ✅ Uses cls
+print(Demo.static_method()) # ✅ No self/cls
+
+ When to Use Recursion?
+When a problem can be broken into smaller subproblems of the same type
+
+Naturally hierarchical structures:
+
+Trees
+
+File systems
+
+Nested lists
+
+Problems with backtracking or combinations/permutations
+ETL scripts: Processing incoming JSON or CSV files
+
+API data aggregation: Sum nested values in request bodies
+
+Financial apps: Handle user input (even dirty) gracefully
+

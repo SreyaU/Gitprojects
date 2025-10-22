@@ -1,0 +1,11 @@
+import pandas as pd
+
+df = pd.read_excel("students 1.xlsx")
+# data = df("students.xlsx", rows=5)
+print(df.head(5))
+print(df.columns.values)
+print(df['Student_ID'].count())
+sorted_df = df.sort_values(by="Score/marks", ascending = False, ignore_index=True)
+print(sorted_df)
+
+### Kaprekar's constant : 6174

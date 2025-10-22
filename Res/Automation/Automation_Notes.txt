@@ -1,0 +1,76 @@
+automation reads
+===================================
+
+
+Different sections in data:
+- Settings	***Settings***
+	1) Importing test libraries, resource files and variable files.
+	2) Defining metadata for test suites and test cases.
+- Variables	***Variables***	
+	Defining variables that can be used elsewhere in the test data.
+- Test Cases	***Test Cases***
+	Creating test cases from available keywords.
+- Tasks	***Tasks***
+	Creating tasks using available keywords. Single file can only contain either tests or tasks.
+- Keywords	***Keywords***	
+	Creating user keywords from existing lower-level keywords
+- Comments	***Comments***
+	Additional comments or data. Ignored by Robot Framework.
+
+Test result:
+- report.html --> Higher level test report.
+- log.html --> Detailed test execution log.
+- output.xml --> Results in machine readable XML format.
+
+Keywords :
+- Library keywords --> keywords from imported libraries
+- User keywords --> user defined in tabular syntax customly
+# highest & lowest level keywords???
+
+Keyword sources:
+- Test libraries
+- Resource files
+- Custom keywords
+
+Testcase workflow:
+- Higher level test 
+	- acceptance test-driven development (ATDD) 
+	- behavior-driven development (BDD)
+- Data-driven tests
+
+Test libraries:
+- Standard libraries eg.OperatingSystem
+- External libraries eg. Selenium2Library
+- Custom libraries
+
+[Documentation]	Used for specifying a test case documentation.
+[Setup], [Teardown]	Specify test setup and teardown.
+[Tags]	Used for tagging test cases.
+[Template]	Specifies the template keyword to use. The test itself will contain only data to use as arguments to that keyword.
+[Timeout]	Used for setting a test case timeout. Timeouts are discussed in their own section.
+
+normal standard libraries:
+BuiltIn
+Collections
+DateTime
+Dialogs
+OperatingSystem
+Process
+Screenshot
+String
+Telnet
+XML
+
+static var --> VAR    ${simple}
+list var --> VAR    @{two items}
+dict var --> VAR    &{lot of stuff}
+
+var scope:
+-local
+-suite
+-suites
+-test
+-global
+-task
+
+general variable types syntax is ${name: type} in the data and name: type:value on the command line

@@ -1,0 +1,37 @@
+def encrypt_ascii(text_file, key):
+    """
+    Encrypts a string by shifting each character's ASCII value by the given key.
+
+    Parameters:
+    text (str): The input string to encrypt.
+    key (int): The shift value for encryption.
+
+    Returns:
+    str: The encrypted string.
+    """
+    encrypted_text = ""
+    output = ""
+    with open(text_file,'r',encoding='utf-8') as f:
+        text = f.read()
+        # print("text is: ",text)
+        lines = text.splitlines()
+        # print(lines)
+        # print(len(text.splitlines()))
+        # lines = len(inpc)
+
+        for line in lines:
+            for char in line:
+                # print("char is: ",char)
+                # Shift the ASCII value of the character by the key
+                encrypted_char = chr(ord(char) + key)
+                encrypted_text += encrypted_char
+            print("encrypted text:", encrypted_text)
+        #     output += encrypted_text
+        # print("output",output)
+            
+'''
+   khoor1#fdw#lv#dq#dqlpdo1
+   urvh#lv#iorzhu1#
+ '''        
+        
+encrypt_ascii("message.txt",3)

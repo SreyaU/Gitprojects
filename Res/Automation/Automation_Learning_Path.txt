@@ -1,0 +1,87 @@
+Automation Prompt:
+=============================
+I want to learn automation using Robot Framework with Python, specifically focusing on Android and WLAN automation. Please create a comprehensive and structured syllabus that will guide me from a beginner level to an advanced automation engineer. The syllabus should cover conceptual knowledge, practical skillsets, and application-level understanding, ensuring I become industry-ready. Act as a professional with over 10 years of experience in this domain and explain each concept in depth with clear examples, detailed logic flow, and best practices. The curriculum should enable me to design automation logic, develop robust scripts, and effectively debug them. Organize the topics sequentially, including all essential concepts for extended learning, common real-world scenarios, and frequently asked interview questions related to each topic. After completing each module, please validate my understanding by providing sample problems or application-level questions that involve automation scripting and problem-solving in Robot Framework for Android and WLAN environments. Additionally, offer tips on tools, libraries, and frameworks relevant to these areas to enhance my practical expertise.
+
+#######################################
+
+tutor me for the below job description with appilcation level in depth concept explanation , practical skill set validation with advanced level interview questions - programming/ scripting, theoretical/ practical wlan related questions, debugging/ logic building questions - from the jd in related topics, You can go through the topics one after the other after verifying that i have understood all the concepts and has clearly grasped and is industry ready on the concept. I need you to teach and upgrade me from beginner to advanced level.After this i should be able to handle any technical scenarios and requirement related to these concepts. ask me for the jd
+
+* Deep knowledge of Wi-Fi technologies (Wi-Fi 5, Wi-Fi 6, Wi-Fi 6E, Wi-Fi 7), IEEE 802.11 standards, and Wi-Fi Alliance certification processes.
+* Deep knowledge and experience working in Omnipeek, Wireshark and IxChariot tools
+* Debugging, Analysis, reproduction and identification of root cause on Wi-Fi domains
+* Collaborate with Research and Development teams to identify design and performance gaps, providing technical feedback and proposing corrective actions.
+* Ensure that validation environments can effectively simulate diverse network conditions, traffic loads, interference scenarios, and client devices.
+* Design and implement system-level performance benchmarking and stress testing for various Wi-Fi configurations (e.g., access points, clients, mesh networks, etc.).
+* Champion a culture of continuous improvement, ensuring that the validation processes evolve to meet emerging technologies and market demands.
+* Experience with Wi-Fi chipset, access point, router, and client device architecture.
+* Proficiency in using Wi-Fi test equipment such as spectrum analyzers, signal generators, protocol analyzers (e.g., Wireshark, AirMagnet), and network simulators.
+* Experience in designing and optimizing test automation frameworks, using tools such as Python, Robot Framework, or proprietary systems.
+* Strong problem-solving and troubleshooting skills.
+* Ability to work in a multi-tasking environment and multi-geo environment
+
+###########################################
+4-stage state machine:??
+SSID (specific or broadcast), supported rates, HT/VHT/HE capabilities.
+
+###################################################################################
+
+🔹 1. Must-Know Modules
+		Module	Purpose	Example Use Case
+		os	File & directory operations	Automating file movements or backups
+		sys	Script execution parameters	Reading command-line args
+		shutil	File operations (copy, move, archive)	Auto archiving logs or configs
+		subprocess	Run system commands	Calling shell tools like ffmpeg, git, etc.
+		glob	Pattern matching for filenames	Batch processing .log or .csv files
+		re	Regular expressions	Text parsing, log extraction, validations
+		datetime	Time/date parsing	Timestamping files, scheduling reports
+		json, csv	Data serialization and reading	Handling APIs and log data
+		requests	HTTP API interactions	Automation via REST APIs
+		time, sleep	Delay operations	Rate limiting, retries
+		argparse	Command-line argument parsing	Writing flexible CLI tools
+		logging	Logging automation scripts	Production-quality debug messages
+
+🔹 2. Preferred / Bonus Modules (Good to Know)
+		Module	Why Learn It
+		pathlib	Modern alternative to os.path
+		pyautogui	GUI automation (keyboard/mouse actions)
+		schedule	Lightweight task scheduling (cron-like)
+		threading, multiprocessing	Run tasks in parallel or asynchronously
+		pprint	Pretty print complex data structures
+		yaml	For reading config files (e.g., .yaml)
+		smtplib, email	Email alerts or automation via email
+		zipfile, tarfile	Compressing/archiving logs or builds
+		openpyxl, xlrd, pandas	Excel/CSV automation for reports
+		selenium	UI/browser automation
+		watchdog	Monitor folder changes in real time
+
+🔸 3. Testing-Specific Libraries
+		Tool/Module	Use Case
+		unittest	Built-in testing framework
+		pytest	Industry-favorite, elegant test writing
+		mock	Mocking objects, APIs, DB calls
+		coverage	Test coverage reports
+		requests-mock	Mocking REST APIs in tests
+		selenium, playwright	Web UI testing
+		behave	BDD testing (given-when-then style)
+		allure-pytest	Rich test reporting
+
+🧠 Sample Interview Qs
+		When would you prefer subprocess.run() over os.system()?
+
+		How do you mock an API call in pytest?
+
+		What's the use of argparse in writing CLI tools?
+
+		Difference between pathlib and os.path?
+
+🧪 Practice Projects Ideas
+		Project	Modules to Use
+		File backup & archive script	os, shutil, zipfile, datetime
+		REST API data fetcher	requests, json, argparse
+		Cron-replacement script	schedule, time, logging
+		Website checker + alert	requests, smtplib, logging
+		Excel auto reporting	openpyxl, pandas, datetime
+		Auto file downloader	requests, os, re, threading
+
+📌 Tip:
+Use help(module) or dir(module) to explore any module interactively.

@@ -1,0 +1,11 @@
+pip freexe
+pip freeze
+pip uninstall scapy
+pip install scapy
+pip install libpcap
+cls
+ls
+ls -a
+mkdir cat
+ls
+doskey/history > history.txt

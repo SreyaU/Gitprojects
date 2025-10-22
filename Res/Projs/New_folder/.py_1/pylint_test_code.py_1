@@ -1,0 +1,87 @@
+import sys
+import pandas as pd #type:ignore
+import os
+import re
+import openpyxl #type: ignore
+from openpyxl.styles import PatternFill #type:ignore
+def read_file_txt_file(Path):
+    try:
+        if os.path.exists(Path):
+            with open(Path,'r') as file:
+                FileContent=file.read()
+                dataList=[]
+                CurrentEmployeeDetails={}
+                for line in FileContent.splitlines():
+                    if not line.strip():
+                        try:
+                            dataList.append(CurrentEmployeeDetails)
+                            CurrentEmployeeDetails={}
+                        except:
+                            print("Error Occured while appending")
+                    else:
+                        if ':' in line:
+                            try:
+                                key,value=line.split(':',1)
+                                CurrentEmployeeDetails[key.strip()]=value.strip()
+                            except:
+                                print("Error!!!")
+                dataList.append(CurrentEmployeeDetails)
+                return dataList
+        else:
+            print(f"No Such Path called {Path}\n Please Enter the valid Path")
+            sys.exit(1)
+    except:
+        print("Error Occured...")
+        sys.exit(1)
+def validate_details(EmployeeDetailsDictionary):
+    for Details in EmployeeDetailsDictionary:
+        for key , values in Details.items():
+            try:
+                if key == "Email ID":
+                    if not values.endswith("@gmail.com"):
+                        #print(f"Invalid Vlaue for the key Email : {key, values}")
+                        Details[key]="Invalid"
+                if key == "DOB" :
+                    #print("\nChecking the DOB\n")
+                    PatternMatch=re.search(r"\\d\d/\\d\\d/\\d\\d\\d\\d",values)
+                    if not PatternMatch:
+                        #print(f"Pattern Mismatch for DOB {key,values}")
+                        Details[key]="Invalid"
+            except:
+                print("Error Occured while Validate")
+                sys.exit(1)
+    return EmployeeDetailsDictionary
+def store_data_to_excel(ValidatedResult):
+    DataFrames=pd.DataFrame(ValidatedResult )
+    print(DataFrames)
+    try:
+        DataFrames.to_excel("EmployeeDetails.xlsx",index=False)
+    except:
+        print("Error while writing to excel")
+        sys.exit(1)
+def copy_sheet_and_invert():
+    ExcelSheet=openpyxl.load_workbook("EmployeeDetails.xlsx")
+    SourceSheet=ExcelSheet["Sheet1"]
+    TargetSheet=ExcelSheet.copy_worksheet(SourceSheet)
+    TargetSheet.title="Final_EmployeeDetails_Data"
+    ExcelSheet.save("EmployeeDetails.xlsx")
+    ExcelData=pd.read_excel("EmployeeDetails.xlsx",sheet_name="Final_EmployeeDetails_Data")
+    TransposedExcelData=ExcelData.transpose()
+    with pd.ExcelWriter("EmployeeDetails.xlsx",if_sheet_exists="replace",mode='a') as ExlShtWr:
+        TransposedExcelData.to_excel(ExlShtWr,sheet_name="Final_EmployeeDetails_Data",header=False)   
+def check_for_invalid():
+    ExcelSheet=openpyxl.load_workbook("EmployeeDetails.xlsx")
+    SourceSheet=ExcelSheet["Final_EmployeeDetails_Data"]
+    for row in SourceSheet.iter_rows():
+        for cell in row:
+            if cell.value=="Invalid":
+                ColorFill=PatternFill(start_color="FFFF6666",end_color="FFFF6666",fill_type="solid")
+                cell.fill=ColorFill
+    ExcelSheet.save("EmployeeDetails.xlsx")
+if __name__ == "__main__" :
+    EmployeeDetailsDictionary=readFileTxtFile("TxtToXl.txt")
+    ValidatedResult=ValidateDetails(EmployeeDetailsDictionary)
+    print(ValidatedResult)
+    store_data_to_excel(ValidatedResult)
+    copy_sheet_and_invert()
+    Check_for_invalid()

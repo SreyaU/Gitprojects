@@ -1,0 +1,82 @@
+# from curses.ascii import islower
+
+# def shift_left(list1, n):
+#     return list1[n:] + list1[:n]
+# """
+# Inputs - list1: A list of elements, n: count of number of left shifts
+# Process - The user input list undergoes left shifting based on the count specified by the user.
+# Output - returns the left shifted list.
+# """
+# def shift_right(list1, n):
+#     return list1[-n:] + list1[:-n]
+# """
+# Inputs - list1: A list of elements, n: count of number of right shifts
+# Process - The user input list undergoes right shifting based on the count specified by the user.
+# Output - returns the right shifted list.
+# """
+
+# user_list_input = input("Enter the elements with space").split()
+# try:
+#     converted = [int(element) for element in user_list_input]
+#     print("All elements are in numeric form")
+# except ValueError:
+#     print("Please enter only digits!!")
+#     exit()
+# list_length = len(user_list_input)
+# Rotate = input("Type clock for clockwise and anticlock for Anticlockwise shifting: ")
+# Shift_count = int(input("Enter the number of times the elements to be rotated : "))
+# if Shift_count > list_length:
+#     Shift_count = Shift_count % list_length
+# else:
+#     pass
+# if Rotate.lower() == "clock":
+#     shifted_list = shift_left(user_list_input, Shift_count)
+# elif Rotate.lower() == "anticlock":
+#     shifted_list = shift_right(user_list_input, Shift_count)
+# else:
+#     print("Enter the correct word")
+# print("Shifted list is : ",shifted_list)
+ def encryption(data, key):
+    en_msg = ""
+    for ch in data:
+        en_msg += chr(ord(ch)+key)
+ 
+    en_file = open("encrypted_file", "w")
+    en_file.write(en_msg)
+    print("Encrypted successfully")
+    return en_msg
+def decryption(data, key):
+    de_msg = ""
+    for ch in data:
+        de_msg += chr(ord(ch)-key)
+    de_file = open("decrypted_file", "w")
+    de_file.write(de_msg)
+    print("Decrypted successfully")
+    return de_msg
+ 
+#with open("file.txt", "r") as file:    #No need to close the file 
+#    data = file.read()
+file = open("file.txt", "r")
+data = file.read()
+ 
+while(True):
+    user = input("Type 'encrypt' for encryption and 'decrypt' for decryption: ").lower()
+    try:
+        key = int(input("Enter the key value: "))
+    except ValueError:
+        print("Please enter digits")
+        continue
+    if user == 'encrypt':
+        en_msg = encryption(data, key)
+    elif user == 'decrypt':
+        de_msg = decryption(en_msg, key)
+    else:
+        print("Please enter proper input")
+        continue
+    choice = input("Do you want to go again (y/n)? ").lower()
+    if choice == 'y':
+        continue
+    else:
+        break
+file.close()    
+print("--Completed--")

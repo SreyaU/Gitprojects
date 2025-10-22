@@ -1,0 +1,4 @@
+def is_palindrome(str_ip):
+    return True if str_ip == str_ip[::-1] else False
+print(is_palindrome("madam"))
+print(is_palindrome("robot"))

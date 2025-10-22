@@ -1,0 +1,11 @@
+'''Task:
+
+Store device details in JSON.
+
+Load devices and loop through them.
+
+Log connection attempts.
+
+Handle missing IP errors.
+
+Solution:'''

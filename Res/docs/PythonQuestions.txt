@@ -1,0 +1,373 @@
+
+## 🔥 Python Exception Handling – Interview-Level Practice Set
+
+Each question is followed by:
+
+* 🚀 **Goal**
+* 💡 **Hint (optional)**
+* ✅ **Expected Output**
+* 💻 **Write your solution below each one**, and I can review it.
+
+---
+
+### ### ✅ Q1. Safe Integer Parser with Default
+
+> **Write a function `safe_int(s, default)` that converts a string to an integer, and returns `default` if conversion fails. Do not use `isnumeric()` or `isdigit()`**
+
+```python
+# 🚀 Goal: Avoid crashing on bad input strings
+# ✅ Example:
+# safe_int("123", 0) ➝ 123
+# safe_int("abc", 0) ➝ 0
+```
+
+---
+
+### ✅ Q2. File Reader with Retry
+
+> Write a function `read_file_retry(filename)` that tries to read a file **up to 3 times**. If the file is missing, print an error message and return `"File Missing"`.
+
+```python
+# ✅ Example:
+# read_file_retry("data.txt")  ➝ If not found: "File Missing"
+```
+
+---
+
+### ✅ Q3. Raise Custom Exception
+
+> Define a custom exception `InvalidScoreError`. Write a function `process_score(score)` that raises this if the score is not in 0–100.
+
+```python
+# ✅ Example:
+# process_score(85) ➝ OK
+# process_score(150) ➝ Raises InvalidScoreError
+```
+
+---
+
+### ✅ Q4. Logger Wrapper
+
+> Write a decorator `@safe_exec` that catches any exception raised by the function and **logs it instead of crashing**.
+
+```python
+# ✅ Example:
+# @safe_exec
+# def risky():
+#     return 1 / 0
+# risky() ➝ Should not crash, but log the error
+```
+
+---
+
+### ✅ Q5. Parse User Input Until Valid
+
+> Prompt the user to enter a valid float. Keep prompting until they do.
+
+```python
+# ✅ Example:
+# "Enter value:" ➝ "abc" ➝ prompt again ➝ "4.5" ➝ Done
+```
+
+---
+
+### ✅ Q6. Filter Invalid Emails
+
+> Given a list of strings, return only those that look like valid emails (must contain `'@'` and `'.'`), skip invalid ones **without crashing**.
+
+```python
+# ✅ Example:
+# filter_emails(["abc@gmail.com", "xyz", "test@domain"]) ➝ ["abc@gmail.com"]
+```
+
+---
+
+### ✅ Q7. Divide with Logging and Fallback
+
+> Write a function `safe_divide(a, b, fallback=0)` that divides two numbers, but:
+
+* Logs if `b == 0`
+* Returns fallback instead of crashing
+
+```python
+# ✅ Example:
+# safe_divide(10, 2) ➝ 5.0
+# safe_divide(10, 0, fallback=-1) ➝ Logs and returns -1
+```
+
+---
+
+### ✅ Q8. Context Manager for Safe File Open
+
+> Write a custom context manager `SafeFile(filename)` using `__enter__` and `__exit__`, which opens a file safely and prints/logs if it fails.
+
+```python
+# ✅ Example:
+# with SafeFile("abc.txt") as f:
+#     print(f.read())
+```
+
+---
+
+### ✅ Q9. API Retry Decorator
+
+> Write a decorator `@retry` that **retries a function 3 times** if it raises a `ConnectionError`. Sleep for 1 second between retries.
+
+```python
+# ✅ Example:
+# @retry
+# def call_api(): ...
+```
+
+---
+
+### ✅ Q10. Validate Input with Multiple Exceptions
+
+> Write a function `validate_user_input(data)` that:
+
+* Accepts a string
+* Raises `ValueError` if not convertible to `int`
+* Raises `TypeError` if not a string
+
+```python
+# ✅ Example:
+# validate_user_input("123") ➝ 123
+# validate_user_input(123) ➝ TypeError
+# validate_user_input("abc") ➝ ValueError
+```
+
+---
+
+### 🧠 Bonus Tip for All Solutions:
+
+Use **logging instead of print** when appropriate, define **custom exceptions** where needed, and wrap risky code with try-except only where necessary (avoid over-catching).
+
+---
+
+Would you like to:
+
+* 🧪 Start solving these one by one and get feedback?
+* 📘 See example answers to a few now?
+* 🔁 Move to the next concept afterward?
+
+Let me know how you'd like to proceed — I'll follow exactly.
+
+
+Extract all dates from:
+"Today is 18/07/2025, tomorrow is 19/07/2025."
+
+Extract phone numbers from:
+"Call +91-9876543210 or 080-23456789"
+
+Get all hashtags from:
+"Post: #python #100DaysOfCode #DevLife"
+
+Find all capital words from:
+"ALERT: SYSTEM DOWN. Please Check ASAP"
+
+Extract file paths from:
+"Loaded from /usr/bin/python3 and /home/user/test.py"
+
+
+Here are the **OOP concepts with their basic Python syntax** for quick reference:
+
+---
+
+## 🔹 1. **Class & Object**
+
+```python
+# Define a class
+class Person:
+    def __init__(self, name):
+        self.name = name  # Instance attribute
+
+    def greet(self):
+        print(f"Hello, I'm {self.name}")
+
+# Create an object
+p1 = Person("Alice")
+p1.greet()
+```
+
+---
+
+## 🔹 2. **Encapsulation**
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # Private attribute (name mangled)
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+print(account.get_balance())  # ✅ OK
+# print(account.__balance)    # ❌ Error (encapsulated)
+```
+
+---
+
+## 🔹 3. **Inheritance**
+
+```python
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):  # Inheriting from Animal
+    def speak(self):
+        print("Dog barks")
+
+d = Dog()
+d.speak()
+```
+
+---
+
+## 🔹 4. **Polymorphism**
+
+```python
+class Cat:
+    def sound(self):
+        print("Meow")
+
+class Dog:
+    def sound(self):
+        print("Bark")
+
+def make_sound(animal):
+    animal.sound()  # Polymorphic behavior
+
+make_sound(Cat())
+make_sound(Dog())
+```
+
+---
+
+## 🔹 5. **Abstraction**
+
+```python
+from abc import ABC, abstractmethod
+
+# Abstract Base Class
+class Vehicle(ABC):
+    @abstractmethod
+    def start(self):
+        pass
+
+class Car(Vehicle):
+    def start(self):
+        print("Car started")
+
+c = Car()
+c.start()
+```
+
+---
+
+### ✅ Summary:
+
+| Concept        | Keyword/Syntax Used                      |
+| -------------- | ---------------------------------------- |
+| Class & Object | `class`, `__init__`, `object()`          |
+| Encapsulation  | `__private_var`, getters/setters         |
+| Inheritance    | `class SubClass(SuperClass):`            |
+| Polymorphism   | Same method name, different classes      |
+| Abstraction    | `from abc import ABC`, `@abstractmethod` |
+
+---
+
+Would you like a printable cheat sheet PDF or code comments added to each syntax block?
+
+🔸 1. Library Management System
+Problem:
+Design a system to manage books, members, and borrowing logic.
+
+Requirements:
+A base class LibraryItem with common attributes like title, author, and item_id.
+
+Subclasses Book, Magazine, DVD each with different borrow_duration.
+
+Method is_overdue() that returns True if the item is overdue.
+
+Members should be able to borrow multiple items.
+
+📌 Concepts: Inheritance, Polymorphism, Abstraction, Encapsulation
+
+🔸 2. Online Store Inventory
+Problem:
+Create a system to manage products in an online store.
+
+Requirements:
+Base class Product with attributes like name, price, stock.
+
+Subclasses Clothing, Electronics, and Grocery.
+
+Implement method apply_discount() that behaves differently for each product type.
+
+Encapsulate sensitive fields like cost_price.
+
+📌 Concepts: Encapsulation, Inheritance, Polymorphism, Method Overriding
+
+🔸 3. Employee Payroll System
+Problem:
+Manage salary calculations for different types of employees.
+
+Requirements:
+Abstract class Employee with calculate_salary() as abstract method.
+
+Subclasses: FullTimeEmployee, PartTimeEmployee, Contractor.
+
+Each type calculates salary differently (hourly vs monthly vs fixed).
+
+Add optional bonuses.
+
+📌 Concepts: Abstraction, Inheritance, Polymorphism, super()
+
+🔸 4. Ride-Sharing App Classes (e.g. Uber/Ola)
+Problem:
+Model a simple version of a ride-sharing app.
+
+Requirements:
+Classes: User, Driver, Ride.
+
+Ride has methods to calculate fare() based on distance and type (e.g., Bike, Car, Premium).
+
+Different drivers have different ratings and commission rates.
+
+📌 Concepts: Class design, Inheritance, Composition, Polymorphism
+
+🔸 5. ATM Simulation
+Problem:
+Build an ATM simulation with users, accounts, and transactions.
+
+Requirements:
+Class BankAccount with encapsulated balance.
+
+Operations: deposit(), withdraw(), check_balance()
+
+Class ATM to manage multiple users and validate PINs.
+
+Bonus: Log every transaction with timestamp.
+
+📌 Concepts: Encapsulation, Classes, Reusability, Composition
+
+🔸 6. Course Management System (for a University)
+Problem:
+Model courses, professors, and students.
+
+Requirements:
+Abstract class Person → Professor, Student
+
+Class Course with enrolled students and assigned professor.
+
+Each student can enroll in multiple courses, but max 5.
+
+Each professor can teach up to 3 courses.
+
+📌 Concepts: Abstraction, Inheritance, Relationships between classes

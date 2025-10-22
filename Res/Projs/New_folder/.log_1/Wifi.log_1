@@ -1,0 +1,84 @@
+2025-08-27 19:11:00,904 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:12:32,466 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:12:32,467 - INFO - Successfully connected to Office5G
+2025-08-27 19:12:33,467 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:14:13,338 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:14:13,339 - INFO - Successfully connected to Office5G
+2025-08-27 19:14:14,339 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:16:12,477 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:18:50,171 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:19:06,240 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:19:06,241 - INFO - Successfully connected to Office5G
+2025-08-27 19:19:07,241 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:19:07,242 - INFO - Successfully connected to Office2.4G
+2025-08-27 19:19:08,242 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 19:19:08,243 - INFO - Successfully connected to Home5G
+2025-08-27 19:19:09,244 - INFO - Attempting to connect to wifi : Home2.4G 
+2025-08-27 19:19:55,556 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:19:55,557 - INFO - Successfully connected to Office5G
+2025-08-27 19:19:56,557 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:21:41,924 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:22:25,739 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:22:25,739 - INFO - Successfully connected to Office5G
+2025-08-27 19:22:26,740 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:22:49,929 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:22:49,930 - INFO - Successfully connected to Office5G
+2025-08-27 19:22:50,937 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:22:50,937 - INFO - Successfully connected to Office2.4G
+2025-08-27 19:22:51,940 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 19:24:37,855 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:24:37,855 - INFO - Successfully connected to Office5G
+2025-08-27 19:27:22,217 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:27:22,217 - INFO - connection status: True
+2025-08-27 19:27:22,218 - INFO - Successfully connected to Office5G
+2025-08-27 19:27:42,147 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:27:42,147 - INFO - connection status: False
+2025-08-27 19:27:43,604 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:27:43,604 - INFO - connection status: False
+2025-08-27 19:29:05,227 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:05,228 - INFO - connection status: False
+2025-08-27 19:29:18,249 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:18,249 - INFO - connection status: True
+2025-08-27 19:29:18,249 - INFO - Successfully connected to Office5G
+2025-08-27 19:29:19,678 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:19,678 - INFO - connection status: True
+2025-08-27 19:29:19,678 - INFO - Successfully connected to Office5G
+2025-08-27 19:29:20,584 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:20,585 - INFO - connection status: False
+2025-08-27 19:29:20,585 - ERROR - Connection failed to Office5G
+2025-08-27 19:29:21,298 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:21,298 - INFO - connection status: False
+2025-08-27 19:29:21,299 - ERROR - Connection failed to Office5G
+2025-08-27 19:29:22,212 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:22,213 - INFO - connection status: True
+2025-08-27 19:29:22,213 - INFO - Successfully connected to Office5G
+2025-08-27 19:29:23,939 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:23,939 - INFO - connection status: True
+2025-08-27 19:29:23,940 - INFO - Successfully connected to Office5G
+2025-08-27 19:29:24,785 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:29:24,785 - INFO - connection status: False
+2025-08-27 19:29:24,785 - ERROR - Connection failed to Office5G
+2025-08-27 19:30:02,601 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:02,601 - INFO - connection status: False
+2025-08-27 19:30:02,601 - ERROR - Connection failed to Office5G
+2025-08-27 19:30:03,941 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:03,942 - INFO - connection status: False
+2025-08-27 19:30:03,942 - ERROR - Connection failed to Office5G
+2025-08-27 19:30:05,911 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:05,911 - INFO - connection status: False
+2025-08-27 19:30:05,911 - ERROR - Connection failed to Office5G
+2025-08-27 19:30:17,592 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:17,593 - INFO - connection status: True
+2025-08-27 19:30:17,593 - INFO - Successfully connected to Office5G
+2025-08-27 19:30:20,527 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:20,527 - INFO - connection status: True
+2025-08-27 19:30:20,527 - INFO - Successfully connected to Office5G
+2025-08-27 19:30:39,314 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:39,314 - INFO - connection status: False
+2025-08-27 19:30:39,314 - ERROR - Connection failed to Office5G
+2025-08-27 19:30:42,288 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:42,289 - INFO - connection status: True
+2025-08-27 19:30:42,289 - INFO - Successfully connected to Office5G
+2025-08-27 19:30:43,577 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:30:43,578 - INFO - connection status: False
+2025-08-27 19:30:43,578 - ERROR - Connection failed to Office5G

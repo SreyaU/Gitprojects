@@ -1,0 +1,22 @@
+{
+  "generated_at": "2025-08-24T18:24:20.231310",
+  "total": 4,
+  "results": [
+    {
+      "name": "Login",
+      "status": "PASSED"
+    },
+    {
+      "name": "Logout",
+      "status": "FAILED"
+    },
+    {
+      "name": "Profile Update",
+      "status": "PASSED"
+    },
+    {
+      "name": "Password Reset",
+      "status": "FAILED"
+    }
+  ]
+}

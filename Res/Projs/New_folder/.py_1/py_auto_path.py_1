@@ -1,0 +1,381 @@
+'''Core modules'''
+# import random
+# import csv
+# import json
+# import time, datetime
+# import sys
+# import os
+# import logging
+# import pandas as pd
+# import xml.etree.ElementTree as ET
+# import subprocess
+
+# print("Epoch time: ",time.time())  # Epoch time
+# print("Current date & time: ",datetime.datetime.now())  # Current date & time
+# print("Run on OS platform :",sys.platform)  # OS platform
+# print("Python version :",sys.version)   # Python version
+# print("Test directory path :",os.getcwd())   # Current directory
+# print("Initial files in test path : ",os.listdir())  # Files in directory
+
+'''Using core python syntax - variables & datatypes'''
+# print(datetime.datetime.now(), "TC1 - Checking for connected devices")
+# devices = ["Router", "Switch", "Access Point"]
+# device_count = len(devices)
+# Dictionary (key-value pairs)
+# config = {"ssid": "TestWiFi", "password": "12345"}
+# print(f" {device_count} devices connected to {config['ssid']} with password {config['password']}")
+# print(datetime.datetime.now(), "TC1 - Completed")
+# time.sleep(1)
+
+'''a loop to simulate checking Wi-Fi signal strength for multiple APs.'''
+# print(datetime.datetime.now(), "TC2 - Checking for APs signal strength")      
+# threshold_RSSI = -65
+# curr_AP_RSSI = [random.randint(-80, 0) for i in range(3)] 
+# print("random rssi value list: ",curr_AP_RSSI)
+
+# AP_list = ["AP1", "AP2", "AP3"]
+# Ap_rssi_map = {'AP1':curr_AP_RSSI[0],'AP2':curr_AP_RSSI[1],'AP3':curr_AP_RSSI[2]}
+# print('ap-rssi map dict: ',Ap_rssi_map)
+# for k,v in Ap_rssi_map.items():
+#     print(f"Checking device: {k}",end='')
+#     if v > -60:
+#         print(" Excellent signal with RSSI ",v)
+#     elif v > -75:
+#         print(" Good signal with RSSI ",v)
+#     else:
+#         print(" Weak signal with RSSI ",v)
+# print(datetime.datetime.now(), "TC2 - Completed")
+# time.sleep(1)
+
+''' a function to test if a given port number is valid (0-65535).'''
+# print(datetime.datetime.now(), "TC3 - Checking for port value")
+# port = random.randint(0,65535)
+# print(f"Accessing port {port}")
+# def is_valid_port(portNumber):
+#     if portNumber in range (0,65535):
+#         print(f"{port} is a valid port number")
+#     else:
+#         print(f"Invalid port number : {port}")
+
+# is_valid_port(port)
+# print(datetime.datetime.now(), "TC3 - Completed")
+# time.sleep(1)
+
+'''Create a WiFiDevice class with attributes ssid and password.
+Add a method connect() that prints a connection attempt.
+'''
+# print(datetime.datetime.now(), "TC4 - Checking for connection attempt")
+# class Device:
+#     def __init__(self, name, ip):
+#         self.name = name
+#         self.ip = ip
+
+#     def ping(self):
+#         print(f"Pinging {self.name} at {self.ip}")
+
+# Usage
+# router = Device("Router", "192.168.1.1")
+# router.ping()
+
+# class WiFiDevice(Device):
+#     def __init__(self, name, ip,ssid, user_password):
+#         super().__init__(name, ip)
+#         self.ssid = ssid
+#         self.user_password = user_password
+#         self.__password = 12345
+
+#     def connect(self,ssid,user_password):
+#         print(f"Trying to reach {self.name} at {self.ip}.")
+#         if user_password == self.__password:
+#             print(f"Authentication successful.Connecting to {self.ssid}")
+#         else:
+#             print("Wrong password")
+
+# ap1 = WiFiDevice("Router", "192.168.1.1","wifi5G",12345)
+# ap1.connect("wifi5G",12345)
+# print(datetime.datetime.now(), "TC4 - Completed")
+# time.sleep(1)
+
+'''File handling - text, csv, json'''
+# print(datetime.datetime.now(), "TC5 - File handling - text, csv, json")
+#text file
+# lines = ["Router\n","Switch\n", "AP\n"]
+# with open("devices.txt", "w") as f:
+#     f.writelines(lines)
+
+# with open("devices.txt","r") as f:
+#     print(f.read())
+
+#csv file
+# with open("devices.csv",'w',newline='') as f:
+#     writer = csv.writer(f)
+#     writer.writerow(["Device","IP"])
+#     writer.writerow(["Router","192.168.1.1"])
+
+# with open("devices.csv",'r',newline='') as f:
+#     reader =csv.reader(f)
+#     for row in reader:
+#         print(row)
+
+#json file
+# config = {"ssid": "OfficeWiFi", "password": "secure123"}
+# with open("config.json",'w') as f:
+#     json.dump(config, f, indent=4)
+
+# with open("config.json",'r') as f:
+#     data = json.load(f)
+#     print(data["ssid"])
+# time.sleep(1)
+
+'''Save Wi-Fi device details (name, IP, signal strength) to JSON.
+Load them back and print each device.'''
+
+# device_1 ={"name":"router","IP":"192.168.1.1", "signal_strength":random.randint(-90,0)}
+# device_2 ={"name":"switch","IP":"192.168.1.2", "signal_strength":random.randint(-90,0)}
+# device_3={"name":"acess point","IP":"192.168.1.3", "signal_strength":random.randint(-90,0)}
+
+# wifidevices = {"device_1":{"name":"router","IP":"192.168.1.1", "signal_strength":random.randint(-90,0)},"device_2":{"name":"switch","IP":"192.168.1.2", "signal_strength":random.randint(-90,0)},"device_3":{"name":"acess point","IP":"192.168.1.3", "signal_strength":random.randint(-90,0)}}
+# with open("wifi_devices.json",'w') as f:
+#     json.dump(wifidevices, f, indent=4)
+
+# with open("wifi_devices.json", 'r') as f:
+#     data = json.load(f)
+#     for key in data:
+#         print(key,":",data[key]["name"],data[key]["IP"],data[key]["signal_strength"])
+
+# print(datetime.datetime.now(), "TC5 - Completed")
+# time.sleep(1)
+
+# ''' a script to log start and end time of a test execution.'''
+# print(datetime.datetime.now(), "TC6 - Checking log start and end time of a test execution.")
+# time.sleep(1)
+# print(datetime.datetime.now(), "TC6 - Completed")
+
+'''a script that asks for a number and handles invalid inputs gracefully.'''
+'''
+# def get_age(age):
+#     if age < 0:
+#         raise ValueError("Age cannot be negative")  # raise
+#     return age
+
+# try:
+#     age = get_age(-5)   # invalid
+# except ValueError as e:
+#     print("Validation error:", e)  # except handles it
+#     age = 0  # fallback
+# print("Final age =", age)'''
+
+# try:
+#     Userinput = int(input("Enter a number: "))
+#     print("you enetered: ",Userinput)
+# except ValueError as e:
+#     print("Validation error: ",e)
+
+
+
+'''a script that logs Wi-Fi connection attempts with INFO and failures with ERROR.'''
+
+'''# logging.basicConfig(filename="app.log", level=logging.INFO)
+# logging.debug("This is debug")
+# logging.info("App started")
+# logging.warning("Low signal strength")
+# logging.error("Connection failed")
+# logging.critical("System down")'''
+
+# logging.basicConfig(filename="Wifi.log",level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+# def connect_wifi(ssid_name):
+#     logging.info(f"Attempting to connect to wifi : {ssid_name} ")
+#     status = random.choice([True,False])
+#     logging.info(f"connection status: {status}")
+#     if status:
+#         logging.info(f"Successfully connected to {ssid_name}")
+#     else:
+#         logging.error(f"Connection failed to {ssid_name}")
+
+# wifi_networks = ["Office5G","Office","Home5G","Home2G"]
+# for i in len(wifi_networks):
+#     connect_wifi(wifi_networks[i])
+
+'''Convert a JSON list of devices into CSV and Excel.
+
+    Parse XML of devices and print only APs.'''
+
+# device_1 ={"name":"router","IP":"192.168.1.1", "signal_strength":random.randint(-90,0)}
+# device_2 ={"name":"switch","IP":"192.168.1.2", "signal_strength":random.randint(-90,0)}
+# device_3={"name":"acess point","IP":"192.168.1.3", "signal_strength":random.randint(-90,0)}
+# device_4 ={"name":"router","IP":"192.168.1.4", "signal_strength":random.randint(-90,0)}
+# device_5 ={"name":"switch","IP":"192.168.1.5", "signal_strength":random.randint(-90,0)}
+# device_6={"name":"acess point","IP":"192.168.1.6", "signal_strength":random.randint(-90,0)}
+
+# wifi_devices = {"dev1":device_1,"dev2":device_2,"dev3":device_3,"dev4":device_4,"dev5":device_5,"dev6":device_6}
+
+# with open("devices.json",'w') as f:
+#     json.dump(wifi_devices,f,indent=4)
+
+# with open("devices.json",'r') as f:
+#     data = json.load(f)
+#     for key in data:
+#         print(key,":",data[key]["name"],data[key]["IP"],data[key]["signal_strength"])
+
+# with open("wifidevices.csv",'w',newline="") as f:
+#     writer = csv.DictWriter(f,fieldnames=["name","IP","signal_strength"])
+#     writer.writeheader()
+#     writer.writerow(device_1)
+#     writer.writerow(device_2)
+#     writer.writerow(device_3)
+#     writer.writerow(device_4)
+#     writer.writerow(device_5)
+#     writer.writerow(device_6)
+   
+# df = pd.DataFrame([device_1,device_2,device_3,device_4,device_5,device_6])
+# # df.to_excel("wifidevices.xlsx",index=False)
+# df2 = pd.read_excel("wifidevices.xlsx")
+# print(df2)
+
+
+# xml_data = """<network>
+#     <device name="Router" ip="192.168.1.1"/>
+#     <device name="AP1" ip="192.168.1.2"/> 
+#     <device name="AP2" ip="192.168.1.2"/> 
+#     <device name="AP3" ip="192.168.1.2"/> 
+#     <device name="AP4" ip="192.168.1.2"/>     
+# </network>"""
+
+# root = ET.fromstring(xml_data)
+# for device in root.findall("device"):
+#     dev = device.get("name")
+#     if dev[:2] == "AP":
+#         print(dev)
+
+'''Create a logger that:
+
+Writes INFO logs to wifi_info.log.
+
+Writes ERROR logs to wifi_error.log.'''  
+# logger = logging.getLogger("wifi.logger")
+# logger.setLevel(logging.DEBUG)
+
+# #strictly filters info logs
+# class InfoFilter(logging.Filter):
+#     def filter(self, record):
+#         return record.levelno == logging.INFO
+    
+# fh1 = logging.FileHandler("wifi_info.log")
+# fh1.setLevel(logging.INFO)
+# fh1.addFilter(InfoFilter())
+
+# #strictly filter error logs
+# class ErrorFilter(logging.Filter):
+#     def filter(self, record):
+#         return record.levelno == logging.ERROR
+
+# fh2 = logging.FileHandler("wifi_error.log")
+# fh2.setLevel(logging.ERROR)
+# fh2.addFilter(ErrorFilter())
+
+# ch = logging.StreamHandler()
+# ch.setLevel(logging.ERROR)
+
+# formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+# fh1.setFormatter(formatter)
+# fh2.setFormatter(formatter)
+# ch.setFormatter(formatter)
+
+# logger.addHandler(fh1)
+# logger.addHandler(fh2)
+# logger.addHandler(ch)
+
+# def connect_wifi(ssid_name):
+#     logger.info(f"Attempting to connect to wifi : {ssid_name} ")
+#     status = random.choice([True,False])
+#     logger.info(f"connection status: {status}")
+#     if status:
+#         logger.info(f"Successfully connected to {ssid_name}")
+#     else:
+#         logger.error(f"Connection failed to {ssid_name}")
+
+# wifi_networks = ["Office5G","Office","Home5G","Home2G"]
+# for i in range(3):
+#     connect_wifi(wifi_networks[i])
+#     time.sleep(1)
+
+'''Parse a log string and extract all IP addresses.
+
+Extract all error codes like ERR1234 from a text.'''
+#pass
+# import re
+
+# text = "Device Router has IP 192.168.1.1 and status UP"
+
+# # Extract IP
+# ip = re.search(r"\b\d{1,3}(?:\.\d{1,3}){3}\b", text)
+# print(ip.group())
+
+# # Extract Device Name
+# device = re.search(r"Device (\w+)", text)
+# print(device.group(1))
+
+'''Networking & Wi-Fi Automation Basics
+a. Running OS commands (subprocess) - Write a function to ping a list of devices and log results.'''
+
+# result = subprocess.run(["ping","8.8.8.8"],capture_output=True,text=True)
+# print(result.stdout)
+
+
+
+''' Automating file clean up'''
+
+#--->Automate cleanup of files older than 1 days.
+# import os
+# import time
+# logs_dir = "./logs"
+# for file in os.listdir(logs_dir):
+#     path = os.path.join(logs_dir,file)
+#     if os.path.isfile(path) and time.time() - os.path.getmtime() > 86400:
+#         os.remove(path)
+#         print(f"deleted old log : {file}")
+
+#---> Automate cleanup of .tmp files older than 2 days.
+# import os
+# import time
+
+# logs_dir ="./logs"
+# for file in os.listdir(logs_dir):
+#     if file.endswith(".tmp"):
+#         path = os.path.join(logs_dir,file)
+#         if os.path.isfile(path):
+#             age = time.time() - os.path.getmtime(path)
+#             if age > 2 * 86400:
+#                 os.remove(path)
+#                 print(f"deleted old log : {file}")
+    
+    
+'''Store devices in CSV.
+
+Loop through devices → Ping each device.
+
+Parse output with regex to extract packet loss.
+
+Log results (INFO/ERROR).
+
+Send results to an API endpoint (mock service).'''
+
+
+'''Hands-on Task:
+
+Create JSON logs of device pings.
+
+Write a parser to extract only failures.'''
+'''Build a pipeline that reads JSON device configs → adds test results → saves to Excel.'''
+# Write a script that pings multiple devices in parallel using threading.
+'''Implement a script that fetches paginated data and retries if rate-limited.'''
+'''Write pytest tests for a function that validates IP addresses.'''
+
+
+
+
+    
+    
+
+

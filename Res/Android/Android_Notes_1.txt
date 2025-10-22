@@ -1,0 +1,81 @@
+ANDROID DEBUGGING KEY CONCEPTS  
+
+🔍 Android Debugging Skill Set – Master Path 
+
+Here’s a structured roadmap: 
+
+✅ 1. Logcat Mastery 
+
+How to read logs 
+
+Filtering tags (grep, -s, -v) 
+
+Log levels (V, D, I, W, E, F) 
+
+Tag-specific logging (log.tag.MyTag) 
+
+✅ 2. ADB Shell Commands 
+
+adb shell basics 
+
+Navigating /proc, /data/anr, /data/system/dropbox 
+
+Pulling system files 
+
+Setting system properties (getprop, setprop) 
+
+✅ 3. Dumpsys (System Services) 
+
+adb shell dumpsys to inspect: 
+
+Activities 
+
+Power 
+
+Package 
+
+Memory 
+
+Display 
+
+Parsing with grep, sed, etc. 
+
+✅ 4. ANR Analysis 
+
+Reading anr/traces.txt 
+
+Identifying stuck threads 
+
+Main thread monitoring 
+
+Common ANR root causes (broadcast, input, service, etc.) 
+
+✅ 5. Crash Debugging 
+
+Native crashes: tombstones/, logcat (FATAL) 
+
+Java crashes: stacktrace in logcat 
+
+DropBox logs: /data/system/dropbox/ 
+
+Bugreport parsing 
+
+✅ 6. Systrace & Perf Tracing 
+
+Using systrace or perfetto 
+
+Capturing system performance timeline 
+
+Identifying jank, I/O delays, CPU overload 
+
+✅ 7. Bonus Topics 
+
+Bugreport deep-dive 
+
+Tracing wakelocks and thermal issues 
+
+dumpsys activity processes, meminfo, gfxinfo 
+
+Log buffer tricks (adb logcat -G 4M, -b radio, -b events, etc.) 
+
+ 

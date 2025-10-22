@@ -1,0 +1,13 @@
+'''Task:
+
+Read devices from CSV.
+
+Ping each device.
+
+Parse output with regex to extract packet loss.
+
+Log success/failure.
+
+Send results to an API endpoint.
+
+Solution:'''

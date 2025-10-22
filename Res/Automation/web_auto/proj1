@@ -1,0 +1,56 @@
+import pandas as pd
+# simpsons = pd.read_html('https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes') #returns a list with multiple tables.
+# print(len(simpsons))
+# simpsons[1]
+
+#read .csv from web using pandas
+# targetwebsite : "url"
+# df_premiere = pd.read_csv('url/data-link') #data frame
+# #rename columns
+# df_premiere.rename(columns={'FTHG':'home_goals','FTAG':'away_goals'}, inplace = True)
+
+#web scraping 
+''' web structure - html
+html element : tags (open/close) , attribute(name/value), content
+tags : <head>, <body>, <header>, <article>, <p>,heading (<h1>, <h2>, <h3>), <div>, <nav>, <li>, <a>, <a href='link' tittle='tieltof'>,<button>, <table>, <td> , <tr>, <ul>, <iframe>(nested browsing)
+inspect --> to get html code of any site
+'''
+# driver allows to interact with website through selenium
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options #headless mode
+# from selenium.webdriver.chrome.options import Options #headless mode
+from selenium.webdriver.chrome.service import Service
+
+website = 'https://google.com'          #"website-path"
+path = "C:\\Users\\12187\\Downloads\\chrome-win64"            #"wher-you-dl-the-chrome-driver" #wrong driver path??
+
+#headless mode --> change to default mode of selenium .
+options = Options() #options object/instance initiation
+options.headless = True #turning options headless mode param
+
+service = Service(executable_path=path)
+# driver = webdriver.Chrome(service=service) #define the driver. newr versoins req defining service to define driver 
+driver = webdriver.Chrome(service=service, options=options) #define the driver. newr versoins req defining service to define driver #option default param
+
+driver.get(website) #opens the website
+
+containers = driver.find_elements(by="xpath", value='//div[@class="teaser__copy-container"]') #by=class/id --> only gives first element if 'find_element' is used
+
+titles = []
+subtitles = []
+links = []
+
+for container in containers:
+   title = container.find_element(by="xpath", value='./a/h2').text
+   subtitle = container.find_element(by="xpath", value='./a/p').text
+   link = container.find_element(by="xpath", value='./a/p').get_attribute("href")
+   titles.append(title)
+   subtitles.append(subtitle)
+   links.append(link)
+
+my_dict = {'title':'titles', 'subtitle':'subtitles', 'link':'links'}
+df_headlines = pd.DataFrame(my_dict) #dict to df
+df_headlines.to_csv('headline-headless.csv') #headless mode
+# df_headlines.to_csv('headline.csv')
+
+driver.quit()

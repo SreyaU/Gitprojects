@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Browny — Portfolio Clone</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">browny</div>
+    <nav class="nav">
+      <a href="#education">education</a>
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#profile">profile</a>
+      <a href="#portfolio">portfolio</a>
+      <a href="#clients">clients</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section class="hero" id="home">
+      <h2>hi , i am</h2>
+      <h1>browny<br/><span class="accent">star .</span></h1>
+      <p class="role">ui/ux designer and web developer</p>
+      <a class="btn" id="downloadResume" href="#">download resume</a>
+    </section>
+
+    <section class="about" id="profile">
+      <h2>about me</h2>
+      <p>Hi, I’m Browny Star — a passionate UI/UX Designer and Web Developer with a keen eye for clean aesthetics, functional design, and pixel-perfect precision. With over a decade of hands-on experience in both creative design and frontend development, I blend artistic vision with technical expertise to build engaging, user-centric digital experiences.</p>
+
+      <div class="contact-cards">
+        <div><strong>phone</strong><div>123-456-7890</div></div>
+        <div><strong>email</strong><div>browny@gmail.com</div></div>
+        <div><strong>website</strong><div>www.brownsine.com</div></div>
+      </div>
+      <div class="profile-img" aria-hidden="true">IMG</div>
+    </section>
+
+    <section id="education" class="block">
+      <h2>education</h2>
+
+      <article class="edu">
+        <time>2008 - 2010</time>
+        <h3>master of computer science</h3>
+        <h4>university of north carolina</h4>
+        <p>north carolina, USA</p>
+      </article>
+
+      <article class="edu">
+        <time>2004 - 2008</time>
+        <h3>bachelor of computer science</h3>
+        <h4>university of north carolina</h4>
+        <p>north carolina, USA</p>
+      </article>
+
+      <article class="edu">
+        <time>2004 - 2008</time>
+        <h3>bachelor of creative design</h3>
+        <h4>university of bolton</h4>
+        <p>bolton, united kingdom</p>
+      </article>
+    </section>
+
+    <section id="skills" class="block">
+      <h2>skills</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <div class="skill-name">adobe photoshop</div>
+          <div class="meter"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">adobe illustrator</div>
+          <div class="meter"><span style="width:85%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">adobe after effects</div>
+          <div class="meter"><span style="width:97%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">html 5</div>
+          <div class="meter"><span style="width:90%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="block">
+      <h2>experience</h2>
+      <div class="exp">
+        <article>
+          <time>2018 - Present</time>
+          <h3>creative director</h3>
+          <h4>Hoplony Tech Limited — Newyork, USA</h4>
+          <p>Led a team of designers and developers to deliver award-winning digital products.</p>
+        </article>
+        <article>
+          <time>2016 - 2018</time>
+          <h3>associate design director</h3>
+          <h4>Visionry Studio — San Francisco, USA</h4>
+          <p>Managed and mentored a team of junior designers while developing UX strategies.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio" class="block">
+      <h2>portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="port-item">ui/ux design</div>
+        <div class="port-item">ui/ux design</div>
+        <div class="port-item">web design</div>
+        <div class="port-item">web development</div>
+      </div>
+    </section>
+
+    <section id="clients" class="block">
+      <h2>clients</h2>
+      <p>Client logos / names (placeholder)</p>
+    </section>
+
+    <section id="contact" class="block contact">
+      <h2>contact me</h2>
+      <div class="contact-left">
+        <div class="profile-img small" aria-hidden="true">IMG</div>
+        <h3>browny star</h3>
+        <p>UI/UX designer</p>
+        <p><strong>phone</strong> 123-456-7890</p>
+        <p><strong>email</strong> browny@gmail.com</p>
+        <p><strong>website</strong> www.brownsine.com</p>
+      </div>
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <label>
+          <span>Name</span>
+          <input name="name" required>
+        </label>
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" required>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+
+    <footer class="footer">© copyright Browny Star 2025</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

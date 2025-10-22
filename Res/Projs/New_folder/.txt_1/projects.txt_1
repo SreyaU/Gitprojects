@@ -1,0 +1,563 @@
+# Progressive project path — Python for Automation & Testing (WLAN & Android focus)
+
+Formal, structured, and actionable. Each project below is self-contained: **description, objectives, required libs/tools, core logic, mandatory + optional features, test cases, deliverables, evaluation metrics, production hardening suggestions, and an *implementation approach* (design, file layout, and function/class signatures — no source code).**
+Progresses from **mini → intermediate → expert**. Work on projects in order; each builds on skills from previous ones.
+
+---
+
+## Project 1 — Mini: Local Wi-Fi Scanner & CSV/JSON Reporter
+
+**Level:** Beginner → Intermediate
+**Goal:** Build a cross-platform utility that scans available Wi-Fi networks and produces structured reports (CSV/JSON) and a concise HTML summary.
+
+**Why:** Real-time, immediate value for WLAN testing; practices subprocess handling, parsing, file I/O, logging.
+
+**Prerequisites:** `subprocess`, `json`, `csv`, `argparse`, `logging`. Access to OS Wi-Fi scan command (`nmcli` on Linux, `netsh wlan show networks mode=Bssid` on Windows, `airport -s` on macOS).
+
+**Core logic (high level):**
+
+1. Detect OS and select appropriate scan command.
+2. Run scan via `subprocess`, capture stdout/stderr.
+3. Parse textual output into structured objects (`ssid`, `bssid`, `signal_dbm`, `channel`, `security`, `freq`).
+4. Normalize entries and save to CSV and JSON.
+5. Generate single-file HTML summary (table + simple charts optionally).
+6. Exit codes: `0` success, `>0` failures with clear error messages.
+
+**Functionalities (must):**
+
+* CLI: `scan --out json|csv --file path`.
+* Robust parsing with regex and exception handling.
+* Configurable timeout and retry.
+* Logging with timestamps and rotating file handler.
+
+**Optional (stretch):**
+
+* Graph signal distribution using Matplotlib (scriptable, no GUI required).
+* Integration with system location (if available) to tag scans.
+
+**Unit / Integration tests:**
+
+* Unit tests for parser logic using sample outputs (mocked subprocess output).
+* CLI tests using `pytest` `capsys` and temporary files.
+* Error handling tests (malformed output, command timeout).
+
+**Deliverables:**
+
+* CLI script, parser module, tests, example outputs (json/csv/html), README with usage and OS caveats.
+
+**Evaluation metrics:**
+
+* Parser accuracy on test samples (expected fields presence).
+* Execution stability (no uncaught exceptions).
+* Test coverage for parser & CLI ≥ 80%.
+
+**Production hardening:**
+
+* Add structured logging (JSON) for ingestion.
+* Add a small retry/backoff policy for transient failures.
+* Validate output schema with JSON Schema before writing.
+
+**Implementation approach (no code):**
+
+* Suggested package layout:
+
+  ```
+  wifi_scan/
+    __init__.py
+    cli.py               # CLI entrypoint and arg parsing
+    scanner.py           # OS detection + run_subprocess_scan()
+    parser.py            # parse_raw_output_to_dicts()
+    reporters.py         # write_json(), write_csv(), generate_html()
+    config.py            # constants, timeouts
+    tests/
+      test_parser.py
+      test_cli.py
+    README.md
+  ```
+* Key function signatures:
+
+  * `run_scan(os_name: str, timeout: int) -> str`
+  * `parse_scan_output(raw: str) -> List[Dict[str, Any]]`
+  * `write_json(data, path: str) -> None`
+  * `write_csv(data, path: str) -> None`
+  * `generate_html_summary(data, path: str) -> None`
+* Logging: use `logging.getLogger(__name__)`; expose `--log-level`.
+
+---
+
+## Project 2 — Mini: ADB Device Inventory & App State Auditor
+
+**Level:** Beginner → Intermediate
+**Goal:** Script that enumerates attached Android devices (via `adb`), collects device properties, installed packages, running services, and produces a verification report.
+
+**Why:** Directly relevant to Android test engineering; practices subprocess, parsing, concurrency (multiple devices), retries, and structured outputs.
+
+**Prerequisites:** `adb` in PATH, Python libs: `subprocess`, `concurrent.futures`, `json`, `argparse`, `logging`.
+
+**Core logic:**
+
+1. Get device list: `adb devices -l`.
+2. For each device (in parallel): collect `getprop`, `pm list packages`, `dumpsys activity services`, `df` and `top` snapshot.
+3. Normalize and save per-device JSON report.
+4. Optionally compare installed packages to expected baseline and highlight differences.
+
+**Functionalities (must):**
+
+* `inventory --output-dir ./reports --baseline baseline.json`
+* Per-device timeout and retry.
+* Concurrency control (max workers).
+* Baseline diff summary.
+
+**Optional:**
+
+* Pull logs (`adb logcat -d`) and attach truncated logs.
+* Detect emulator vs physical device.
+
+**Tests:**
+
+* Mocked `adb` outputs for unit tests.
+* Baseline diff unit tests.
+
+**Deliverables:**
+
+* Tool, sample baseline, sample reports, tests, README with adb permission notes.
+
+**Production hardening:**
+
+* Handle ADB connection flakiness with exponential backoff and device-specific retry counters.
+* Use structured logging and include device serial in every log line.
+
+**Implementation approach:**
+
+* Package layout:
+
+  ```
+  adb_audit/
+    cli.py
+    adb_client.py     # run_adb(cmd, device=None) -> stdout
+    collector.py      # collect_device_info(serial) -> dict
+    baseline.py        # compare_baseline(device_info, baseline)
+    reporters.py
+    tests/
+  ```
+* Key functions:
+
+  * `list_devices() -> List[str]`
+  * `collect_device_info(serial: str, timeout:int) -> Dict`
+  * `compare_to_baseline(device_info: Dict, baseline: Dict) -> Dict(diff_summary)`
+
+---
+
+## Project 3 — Intermediate: Network Baseline Monitor with Alerts
+
+**Level:** Intermediate
+**Goal:** Continuous monitor that records network latency (ICMP ping), packet loss, basic traceroute hops, stores time-series data (CSV/SQLite), and triggers alerts when thresholds are breached.
+
+**Why:** Practical network automation and continuous testing; introduces scheduling, data persistence, and alert generation.
+
+**Prerequisites:** `subprocess` (ping/traceroute), `sqlite3`, `schedule` or `APScheduler`, `smtplib` or webhook for alerts, `pytest`.
+
+**Core logic:**
+
+1. Config-driven list of targets (IP/host) and thresholds.
+2. Scheduled task: ping each target N times, compute RTT stats and loss; traceroute on demand.
+3. Store results in SQLite with timestamp, host, min/avg/max, loss, hops summary.
+4. Alert engine: if loss or avg-rtt > threshold, send email/webhook/pager duty integration.
+
+**Functionalities (must):**
+
+* Config file support (YAML/JSON).
+* CLI to run once or run as daemon/service.
+* Simple UI: generate last-24h summary report (CSV, HTML).
+
+**Optional:**
+
+* Integrate with Prometheus pushgateway or push metrics.
+* Support ICMP via raw sockets (elevated privileges) for precision.
+
+**Tests:**
+
+* Unit tests for analyzer (stat calc), mocked subprocess ping outputs.
+* Integration test writing/reading SQLite with temp DB.
+
+**Deliverables:**
+
+* Agent script, config examples, alerts integration doc, tests.
+
+**Production hardening:**
+
+* Use async or thread pool to avoid blocking.
+* Circuit breaker for persistent failures to avoid alert storms.
+* Rate-limit alerts with cooldown.
+
+**Implementation approach:**
+
+* Suggested modules:
+
+  ```
+  net_monitor/
+    config.py
+    scheduler.py     # start_scheduler()
+    probe.py         # probe_host(host) -> result dict
+    storage.py       # sqlite wrapper write_result(), query_range()
+    alert.py         # evaluate_and_alert(result)
+    reports.py
+  ```
+* Key signatures:
+
+  * `probe_host(host: str, count:int, timeout: int) -> Dict`
+  * `write_result(conn, result: Dict) -> None`
+  * `evaluate_and_alert(result: Dict, thresholds: Dict) -> Optional[Alert]`
+
+---
+
+## Project 4 — Intermediate: Automated WLAN Throughput Tester (iperf Integration)
+
+**Level:** Intermediate → Advanced
+**Goal:** Controller that orchestrates iperf (or iperf3) tests between a DUT (device under test) and a test server, consolidates results, and performs regression comparisons.
+
+**Why:** Direct WLAN performance measurement automation. Practices subprocess management, parsing JSON output (iperf3 supports JSON), test sequencing, retries, and result validation.
+
+**Prerequisites:** `iperf3` installed on server and client (or run server remote via SSH), Python libs: `subprocess`, `json`, `paramiko` (optional), `pytest`.
+
+**Core logic:**
+
+1. Ensure iperf server is running on test host (SSH start or local start).
+2. Trigger iperf client on DUT or controlled device; collect JSON output.
+3. Parse throughput, jitter, retransmits; associate test metadata (channel, band, MCS if available).
+4. Store results and compare against baseline thresholds; mark PASS/FAIL.
+
+**Functionalities (must):**
+
+* Test scenarios: upload, download, bi-directional, multiple parallel streams, different durations.
+* Test config file with scenarios.
+* Aggregate report and PASS/FAIL summary.
+
+**Optional:**
+
+* Automate radio configuration via vendor APIs (if available).
+* Plot time-series throughput graphs.
+
+**Tests:**
+
+* Parser unit tests using saved iperf JSON outputs.
+* Scenario runner tests using mocked ssh/subprocess.
+
+**Deliverables:**
+
+* Test runner, scenario configs, sample reports.
+
+**Production hardening:**
+
+* Use structured test result schema (JSON Schema).
+* Add automatic server health checks and restart logic.
+
+**Implementation approach:**
+
+* Modules:
+
+  ```
+  iperf_runner/
+    orchestrator.py   # scenario runner
+    iperf_client.py   # start_client(server, scenario) -> json
+    server_manager.py # ensure_server()
+    analyzer.py       # validate_results(json, thresholds)
+    reporters.py
+  ```
+* Key APIs:
+
+  * `run_scenario(scenario: Dict) -> TestResult`
+  * `validate_result(result: TestResult, criteria: Dict) -> Bool, Dict(reason)`
+
+---
+
+## Project 5 — Intermediate → Advanced: Captive-Portal & Provisioning Automation Simulator
+
+**Level:** Intermediate → Advanced
+**Goal:** Create an automation tool that simulates captive portal flows, automates device provisioning (e.g., WPA2-Enterprise cert install, 802.1X flow), and validates success criteria.
+
+**Why:** Tests common WLAN enterprise flows and provisioning, useful to validate onboarding scripts and captive portal redirect behavior.
+
+**Prerequisites:** Knowledge of captive portal flows, `requests`, `flask` (to create a local captive portal test server), `adb` (for Android interaction), certificate handling via `openssl` or Python's `ssl`.
+
+**Core logic:**
+
+1. Launch a local captive portal server (Flask) that mimics redirect and auth.
+2. From device, trigger captive portal detection (HTTP probe) and handle redirect.
+3. Automate click-through / form submission or OAuth redirect (mock) to simulate successful auth.
+4. For 802.1X provisioning: push certificate via `adb`, install trust chain, configure Wi-Fi profile, and verify connectivity.
+
+**Functionalities (must):**
+
+* Emulated captive portal endpoints: `/generate_204` handling, redirect handling, auth handler.
+* Android automation to open captive portal using `adb` and control Chrome/intent (or use UIAutomator if available).
+* Clear test verdict: `connected` or `failed`, with logs/screenshots.
+
+**Optional:**
+
+* Simulate backend auth success/failure modes.
+* Multiple SSID profiles and certificate expiry simulations.
+
+**Tests:**
+
+* Server unit tests.
+* Device-side automation tests mocked where possible.
+
+**Deliverables:**
+
+* Captive portal test server, Android automation scripts, test cases, documentation.
+
+**Production hardening:**
+
+* Use containerization for captive portal server for reproducibility.
+* Secure handling of certificates; do not store private keys in repo.
+
+**Implementation approach:**
+
+* Modules:
+
+  ```
+  captive_test/
+    server/
+      app.py
+      handlers.py
+    android/
+      adb_helper.py
+      captive_flow.py
+    certs/
+    tests/
+  ```
+* Function signatures:
+
+  * `start_captive_server(config) -> ServerHandle`
+  * `simulate_device_captive_flow(serial: str, portal_url: str) -> dict(result, logs)`
+
+---
+
+## Project 6 — Advanced: Distributed Network Test Orchestrator (Worker/Controller)
+
+**Level:** Advanced
+**Goal:** Build a distributed framework where a central controller distributes test jobs (throughput, ping, app test) to remote workers (Raspberry Pis or other agents). Workers execute jobs, stream logs, and return structured results to central store. Include retries, rate-limiting, and job prioritization.
+
+**Why:** Real-world scale testing; introduces multiprocessing, networking, RPC (gRPC or HTTP), job queues, and resiliency.
+
+**Prerequisites:** `asyncio`, `aiohttp` or `grpcio`, `multiprocessing`, `sqlite` or `InfluxDB`, `docker` (for workers), basic knowledge of message queues (RabbitMQ/Redis) — optional.
+
+**Core logic:**
+
+1. Controller exposes REST/gRPC API to submit jobs and query status.
+2. Workers poll controller or subscribe to queue for jobs, execute, and stream logs back (websockets or gRPC stream).
+3. Results are validated and stored centrally; controller exposes report API and CLI.
+
+**Functionalities (must):**
+
+* Controller: job submit, status query, worker registry, dashboard endpoint (JSON).
+* Worker: job execution sandbox, resource limits, health check.
+* Authentication between controller and workers (tokens).
+
+**Optional:**
+
+* Auto-scaling workers (via Docker Compose/K8s).
+* Attach Prometheus metrics and Grafana dashboard.
+
+**Tests:**
+
+* Integration tests using local loopback controller + multiple worker processes.
+* Failure injection tests (worker crash mid-job).
+
+**Deliverables:**
+
+* Controller, worker, deployment scripts (docker-compose), sample test jobs, docs.
+
+**Evaluation metrics:**
+
+* Job latency, success rate, worker churn tolerance.
+
+**Production hardening:**
+
+* TLS for all RPCs, JWTs for auth, circuit breakers, persistent job queues (RabbitMQ), idempotency for job execution, retry policies with exponential backoff.
+
+**Implementation approach:**
+
+* Suggested repo structure:
+
+  ```
+  dist_orchestrator/
+    controller/
+      main.py
+      api.py
+      job_store.py
+    worker/
+      agent.py
+      executor.py
+    common/
+      schemas.py    # pydantic models for Job/Result
+      auth.py
+    deployment/
+      docker-compose.yml
+    tests/
+  ```
+* Key interfaces:
+
+  * `Controller.submit_job(job_spec: JobSpec) -> job_id`
+  * `Worker.poll_and_execute(token: str) -> stream logs and final Result`
+  * `validate_result(job_id, result) -> Verdict`
+
+---
+
+## Project 7 — Expert: End-to-End Android OTA/Regression Automation Pipeline
+
+**Level:** Expert
+**Goal:** Full pipeline to validate over-the-air updates and app regression on multiple Android devices: download OTA package, verify checksum/signature, install via `adb sideload` or vendor protocol, perform post-install functional regression suite, gather logs, compare performance metrics to baseline, and create release-quality report.
+
+**Why:** Covers advanced device automation, secure update validation, test orchestration, and production reporting.
+
+**Prerequisites:** `adb`, test app instrumentation (`uiautomator2` or Espresso via ADB), artifact storage (S3-like or local), `pytest`, `multiprocessing`, signed OTA verification steps (`openssl`), knowledge of recovery/sideload flow.
+
+**Core logic:**
+
+1. Fetch OTA artifact and metadata from artifact store.
+2. Verify checksum and signature.
+3. For each target device (parallel or scheduled):
+
+   * Reboot to recovery.
+   * Apply update (sideload or vendor tool).
+   * Monitor installation progress and timeouts.
+   * Reboot to system and perform smoke checks (boot completed, required services).
+   * Run regression test suite (automated UI tests + performance tests).
+   * Collect logs (`logcat`, `dmesg`) and artifacts (screenshots, traces).
+4. Aggregate verdicts, produce structured release report and pass/fail badge.
+
+**Functionalities (must):**
+
+* Safe rollback strategy: detect bootloop and attempt rollback or mark device as quarantined.
+* Artifact verification and immutability checks.
+* Test suite plug-in model: each test is a plugin with clear interface.
+* Report generation: PDF/HTML + machine-readable JSON.
+
+**Optional:**
+
+* Integrate with CI (GitLab/GitHub Actions) to run pipeline on artifact push.
+* Auto-notify stakeholders (Slack/email) with report.
+
+**Tests:**
+
+* Mocks for artifact fetch and signature verification.
+* End-to-end dry-run mode where device interactions are simulated.
+
+**Production hardening:**
+
+* Strict timeouts with recovery actions.
+* Device isolation (power-cycling, serial-console).
+* Secure storage of signing keys; do not expose private keys in automation.
+
+**Implementation approach:**
+
+* Project layout:
+
+  ```
+  ota_pipeline/
+    cli.py
+    artifact.py        # fetch + verify
+    installer.py       # apply_update(device, artifact)
+    test_plugins/
+      smoke.py
+      ui_regression.py
+      perf.py
+    report.py
+    device_manager.py  # device state, rollback handlers
+    ci/
+    tests/
+  ```
+* Plugin interface (example):
+
+  * `class TestPlugin:`
+
+    * `def setup(self, device):`
+    * `def run(self, device) -> TestResult:`
+    * `def teardown(self, device):`
+* Key workflows:
+
+  * `run_ota_pipeline(artifact_id, device_list, parallelism) -> PipelineReport`
+
+---
+
+## Project 8 — Expert: Modular Automation Framework & Dashboard (Production)
+
+**Level:** Expert / Architect
+**Goal:** Design and implement a modular automation framework with plugin architecture, structured logging (JSON), centralized results store, web dashboard (FastAPI + simple frontend), CI integration, and automated deployment. Include role-based access and RBAC for test triggers.
+
+**Why:** End-to-end platform matching industry requirements — reusable, extensible, observability, and secure.
+
+**Prerequisites:** `FastAPI`, `SQLAlchemy` or `Tortoise ORM`, `Alembic` migrations, `Celery` or `RQ` for background jobs, `Prometheus` metrics, `docker`, `pytest`, knowledge of OAuth2/JWT.
+
+**Core logic:**
+
+1. Framework core: job schema, plugin registration, resource manager, scheduler.
+2. REST API for job submission, result retrieval, worker management, and metrics.
+3. Background worker system to execute jobs (integrates Project 6 worker logic).
+4. Web dashboard: trigger jobs, view results, visualize trends, and download artifacts.
+5. CI pipeline to run unit tests and deploy containers.
+
+**Functionalities (must):**
+
+* Plugin discovery and isolation (each plugin as pip-installable package or Python entry-point).
+* Structured logging and centralized ingestion (e.g., to ELK or file).
+* User authentication + role-based permissions.
+* Audit logs for test triggers and changes.
+
+**Optional:**
+
+* Multi-tenant support.
+* Policy engine to auto-block failing releases.
+
+**Tests:**
+
+* Unit tests for core, plugin interface conformance tests, integration tests with test worker in Docker.
+
+**Deliverables:**
+
+* Full framework code, deployment manifests, sample plugins, developer guide, API docs (OpenAPI), dashboard.
+
+**Production hardening:**
+
+* Secrets management (Vault), TLS termination, rate-limits, input validation everywhere, request quotas, monitoring + alerting, disaster recovery plan for DB and artifact store.
+
+**Implementation approach:**
+
+* High-level architecture:
+
+  * API Gateway (FastAPI) ↔ Job Store (Postgres) ↔ Task queue (Celery + Redis) ↔ Workers (Docker) ↔ Artifact store (S3)
+  * Observability: Prometheus + Grafana, ELK for logs.
+* Repo structure:
+
+  ```
+  automation_platform/
+    api/
+    core/
+    plugins/
+    workers/
+    ui/
+    infra/    # k8s/docker-compose, helm charts
+    docs/
+  ```
+* Core interfaces:
+
+  * `JobSpec`, `JobStatus`, `PluginBase` (with `validate`, `execute`, `collect_artifacts`)
+  * API endpoints: `/jobs`, `/jobs/{id}/status`, `/workers`, `/results/{id}`
+
+---
+
+## Final notes — how to proceed (concise)
+
+1. **Follow order:** start Project 1 → Project 2 → … → Project 8. Each builds capability and introduces new concepts.
+2. **Deliverable discipline:** for each project produce:
+
+   * README with objective and run steps.
+   * CLI entrypoint and config example.
+   * Unit tests for critical logic.
+   * CI job that runs tests.
+3. **When you finish a project:** share your repository or code here. I will review, provide concrete code-level suggestions, point out production improvements, and — per your request — provide an implementation example (code) only **after** you share your code.
+4. **If you want,** pick which project you’ll start now and I’ll provide a prioritized checklist for the first week (tasks by day) and a minimal set of test fixtures to use.
+
+If you want fewer or more projects, or want projects tailored to a specific vendor (Cisco, Arista, Broadcom) or to integrate a specific CI/CD stack, tell me which and I will adapt the sequence and include vendor APIs and authentication considerations.

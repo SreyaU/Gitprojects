@@ -1,0 +1,32 @@
+{
+    "dev1": {
+        "name": "router",
+        "IP": "192.168.1.1",
+        "signal_strength": -87
+    },
+    "dev2": {
+        "name": "switch",
+        "IP": "192.168.1.2",
+        "signal_strength": -90
+    },
+    "dev3": {
+        "name": "acess point",
+        "IP": "192.168.1.3",
+        "signal_strength": -54
+    },
+    "dev4": {
+        "name": "router",
+        "IP": "192.168.1.4",
+        "signal_strength": -9
+    },
+    "dev5": {
+        "name": "switch",
+        "IP": "192.168.1.5",
+        "signal_strength": -72
+    },
+    "dev6": {
+        "name": "acess point",
+        "IP": "192.168.1.6",
+        "signal_strength": -62
+    }
+}

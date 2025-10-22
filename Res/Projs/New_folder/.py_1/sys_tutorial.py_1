@@ -1,0 +1,61 @@
+# import sys
+# x,y = sys.argv[1:]
+# sum = int(x) + int(y)
+# print("Sum :", sum)
+
+''''calculator using sys'''
+# import sys
+
+# if len(sys.argv) != 4:
+#     sys.exit("Usage: python calc.py num1 operator num2")
+
+# num1 = float(sys.argv[1])
+# operator = sys.argv[2]
+# num2 = float(sys.argv[3])
+
+# if operator == '+':
+#     result = num1 + num2
+# elif operator == '-':
+#     result = num1 - num2
+# elif operator == '*':
+#     result = num1 * num2
+# elif operator == '/':
+#     result = num1 / num2
+# else:
+#     sys.exit("Invalid operator. Use +, -, *, /")
+
+# print(f"Result: {result}")
+
+''' q3'''
+import sys
+import os
+# Check command-line arguments
+file_name = sys.argv[1:]
+# Try to open file
+file_path = os.path.join(".",file_name)
+if os.path.exists(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        # Print lines with line numbers
+        text = f.readlines()
+        for line in text:
+            enumerate(1,line)
+
+    # Handle errors
+else:
+    sys.exit(1)
+    print("File does not exist")
+
+#     import sys
+
+# if len(sys.argv) != 2:
+#     sys.exit("Usage: python read_file.py filename")
+
+# filename = sys.argv[1]
+
+# try:
+#     with open(filename, 'r') as f:
+#         for i, line in enumerate(f, start=1):
+#             sys.stdout.write(f"{i}: {line}")
+# except FileNotFoundError:
+#     sys.stderr.write(f"Error: {filename} not found\n")
+#     sys.exit(1)

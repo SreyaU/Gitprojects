@@ -1,0 +1,177 @@
+# import logging
+
+from scapy.all import rdpcap # for small files , loads entire file to memory
+# from scapy.all import PcapReader # memory optimised generator way for .pcap
+# from scapy.all import PcapReader # memory optimised generator way for .pcapng --> more metadata
+from pathlib import Path
+from scapy.all import PcapReader, TCP, Dot11
+from collections import defaultdict
+import statistics
+import time
+
+#------------------------------------------------
+# PREREQUISITES 
+"""
+    - check if wireshark/tshark/pyshark installed already in system.If yes, proceed with some of the parsing with those.Else continue with scapy.
+"""
+#------------------------------------------------
+
+#-------------------------------------------------
+# PCAP INGESTION
+""" 
+    - input from user
+"""
+#-------------------------------------------------
+
+# Load the pcap file --> based on size and format
+SUPPORTED_FORMATS = ['.pcap','.pcapng'] #other formats --> ".cap",".dmp",".pcap.gz", ".snoop", ".trc", ".enc"
+MAX_FILE_SIZE_IN_MB = 10*1024*1024       # 1 MB = 1024 * 1024 bytes
+
+# print("file-size in bytes",MAX_FILE_SIZE_IN_MB)
+
+#Take PCAP file input
+def get_pcap_file():
+    try:
+        pcap_file_path = input('Upload a PCAP file or enter file path: ')
+        print("pcap file path: ", pcap_file_path)
+        print(detect_pcap_type(pcap_file_path))
+        print(analyze_pcap_scapy(pcap_file_path))
+        #check success
+        #get file path , if possible
+        #if yes, go for packet type detection
+    except FileNotFoundError:
+        print(f"Error: The file '{pcap_file_path}' was not found.")
+        #empty file exception
+        #wrong format exception
+        #corrupted exception
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+#detect file format
+def detect_pcap_type(file_path):
+    with open(file_path, 'rb') as f:
+        magic = f.read(4)
+        hex_magic = magic.hex()
+
+        if hex_magic in ['d4c3b2a1', 'a1b2c3d4', '4d3cb2a1', 'a1b23c4d']:
+            return "PCAP"
+        elif hex_magic == '0a0d0d0a' :
+            return "PCAP-NG"
+        else:
+            return "Unknown or unsupported format : upload file in either '.pcap' or '.pcap-ng' formats "
+        
+# file_path = 'dhcp.pcap'
+# size = Path(file_path).stat().st_size
+# print("size is :", size)
+
+#----------------------------------------
+#Parse pcap file
+#----------------------------------------
+
+#----------------------------------------
+#Analyse pcap file
+#----------------------------------------
+def pcap_analysis(pcap_file_path):
+    packets = rdpcap(pcap_file_path)
+    print(f"Total packets: {len(packets)}")
+    count = 1
+    for packet in packets:
+        print("packet no: ", count)
+        print(packet.summary())      # one-line summary --> Ether / IP / UDP / BOOTP / DHCP Discover
+        # packet.show()               # detailed breakdown of fields
+        count += 1
+
+def analyze_pcap_scapy(pcap_file_path):
+    summary = {
+        "total_packets": 0,
+        "protocol_count": defaultdict(int),
+        "flows": set(),
+        "packet_loss_estimate": 0,
+        "rtt_samples": [],
+        "rssi_values": [],
+        "snr_values": [],
+    }
+
+    tcp_tracker = {}     # Tracks TCP SYN/SYN-ACK timestamps for RTT
+    tcp_seq_seen = set() # Tracks seen TCP sequence numbers
+
+    start_time = time.time()
+
+    with PcapReader(pcap_file_path) as pcap_reader:
+        for pkt in pcap_reader:
+            summary["total_packets"] += 1
+
+            # --- Identify protocol ---
+            if pkt.haslayer(TCP):
+                summary["protocol_count"]["TCP"] += 1
+            elif pkt.haslayer("UDP"):
+                summary["protocol_count"]["UDP"] += 1
+            elif pkt.haslayer("ICMP"):
+                summary["protocol_count"]["ICMP"] += 1
+            else:
+                summary["protocol_count"]["Other"] += 1
+
+            # --- Track flow (by src-dst pair) ---
+            if hasattr(pkt, "src") and hasattr(pkt, "dst"):
+                summary["flows"].add((pkt.src, pkt.dst))
+
+            # --- RSSI / SNR (if 802.11) ---
+            if pkt.haslayer(Dot11):
+                rssi = getattr(pkt, "dBm_AntSignal", None)
+                snr = getattr(pkt, "dBm_AntNoise", None)
+                if rssi is not None:
+                    summary["rssi_values"].append(rssi)
+                if snr is not None:
+                    summary["snr_values"].append(snr)
+
+            # --- TCP analysis: RTT and packet loss ---
+            if pkt.haslayer(TCP):
+                tcp = pkt[TCP]
+                seq = tcp.seq
+                ack = tcp.ack
+
+                # RTT estimation: match SYN to SYN-ACK or ACK
+                if tcp.flags == "S":  # SYN
+                    tcp_tracker[(pkt.src, pkt.dst, seq)] = pkt.time
+                elif tcp.flags == "SA":  # SYN-ACK
+                    key = (pkt.dst, pkt.src, ack - 1)
+                    if key in tcp_tracker:
+                        rtt = pkt.time - tcp_tracker[key]
+                        summary["rtt_samples"].append(rtt)
+                        del tcp_tracker[key]
+
+                # Packet loss estimate by sequence gaps
+                if seq in tcp_seq_seen:
+                    continue
+                tcp_seq_seen.add(seq)
+
+    # --- Compute aggregate metrics ---
+    total_flows = len(summary["flows"])
+    avg_rtt_ms = statistics.mean(summary["rtt_samples"]) * 1000 if summary["rtt_samples"] else None
+    avg_rssi = statistics.mean(summary["rssi_values"]) if summary["rssi_values"] else None
+    avg_snr = statistics.mean(summary["snr_values"]) if summary["snr_values"] else None
+
+    elapsed = time.time() - start_time
+
+    # Estimate packet loss ratio (heuristic: missing sequence numbers)
+    summary["packet_loss_estimate"] = 1 - (len(tcp_seq_seen) / summary["protocol_count"]["TCP"]) if summary["protocol_count"]["TCP"] else 0
+
+    result = {
+        "total_packets": summary["total_packets"],
+        "total_flows": total_flows,
+        "protocol_counts": dict(summary["protocol_count"]),
+        "avg_rtt_ms": avg_rtt_ms,
+        "avg_rssi_dbm": avg_rssi,
+        "avg_snr_db": avg_snr,
+        "packet_loss_estimate": round(summary["packet_loss_estimate"], 6),
+        "processing_time_sec": round(elapsed, 2),
+    }
+
+    return result
+
+
+def main():
+    get_pcap_file()
+
+if __name__ == "__main__":
+    main()

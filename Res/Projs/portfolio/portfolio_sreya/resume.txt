@@ -1,0 +1,3 @@
+RESUME PLACEHOLDER
+Replace this file with a real resume PDF named 'resume.pdf' for GitHub Pages deployment.
+Recommended: single-column PDF, text-first, with clear headings: SUMMARY, EXPERIENCE, EDUCATION, SKILLS.

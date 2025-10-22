@@ -1,0 +1,131 @@
+methods - instance, cls, static
+
+Modules (built-in):
+python
+Copy
+Edit
+import os
+import sys
+import json
+Modules from third-party libraries:
+python
+Copy
+Edit
+import requests         # requests module from requests library
+import numpy as np      # numpy module from numpy package
+from matplotlib import pyplot  # module from matplotlib
+
+===============================================================================
+os module in Python provides a way to interact with the operating system — like handling files, directories, environment variables, paths, processes, etc.
+The subprocess module allows you to spawn new processes, connect to their input/output/error pipes, and interact with system shell commands — more securely and flexibly than os.system().
+
+==================================================================================
+Excellent — here’s a hands-on practice challenge focused on working with API responses, distinguishing between JSON strings and Python dictionaries, and handling them correctly.
+
+🧪 Practice Challenge: API Response Parser
+✅ Scenario:
+You're building an automation tool that interacts with an API. Sometimes, the API returns:
+
+A Python dict (if using a local mock or SDK)
+
+A JSON string (if calling a remote endpoint via requests)
+
+Your task is to write a robust function that:
+
+Accepts the response data (string or dict)
+
+Detects the type
+
+Parses if needed
+
+Extracts specific fields
+
+Handles errors gracefully
+
+📄 Sample JSON (could be from a real API):
+json
+Copy
+Edit
+{
+  "user": {
+    "id": 123,
+    "name": "Alice",
+    "active": true
+  },
+  "meta": {
+    "status": "success"
+  }
+}
+🔧 Requirements:
+Write a function parse_api_response(data) that:
+
+✅ Accepts either a JSON string or a Python dictionary
+✅ Extracts user['id'], user['name'], and meta['status']
+✅ Handles missing fields with default values
+✅ Raises a ValueError if format is invalid
+✅ Logs output in structured format like:
+
+text
+Copy
+Edit
+User ID: 123, Name: Alice, Status: success
+💡 Hints:
+Use json.loads()
+
+Check type with isinstance()
+
+Use .get() to avoid KeyErrors
+
+🧑‍💻 Starter Template:
+python
+Copy
+Edit
+import json
+
+def parse_api_response(data):
+    # 1. Detect input type
+    if isinstance(data, str):
+        try:
+            data = json.loads(data)
+        except json.JSONDecodeError:
+            raise ValueError("Invalid JSON string.")
+
+    elif not isinstance(data, dict):
+        raise ValueError("Unsupported data format. Must be JSON string or dict.")
+
+    # 2. Extract safely
+    user = data.get("user", {})
+    meta = data.get("meta", {})
+
+    user_id = user.get("id", "N/A")
+    name = user.get("name", "Unknown")
+    status = meta.get("status", "Unknown")
+
+    print(f"User ID: {user_id}, Name: {name}, Status: {status}")
+
+# Test 1: With JSON string
+json_input = '{"user": {"id": 123, "name": "Alice"}, "meta": {"status": "success"}}'
+parse_api_response(json_input)
+
+# Test 2: With Python dict
+dict_input = {
+    "user": {"id": 456, "name": "Bob"},
+    "meta": {"status": "pending"}
+}
+parse_api_response(dict_input)
+✅ What This Tests:
+Safe parsing & type detection
+
+Clean handling of structured data
+
+Robust error control (common in real APIs)
+
+Would you like me to:
+
+Extend this to real requests.get() API calls?
+
+Add automated test cases using pytest?
+
+Convert it into a CLI tool or module structure?
+
+Let me know what level you want to practice next.

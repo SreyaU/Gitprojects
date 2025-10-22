@@ -1,0 +1,11 @@
+EmployeeID,Name,Date,CheckIn,CheckOut,Status
+101,John Doe,2025-10-01,09:05,17:15,Present
+102,Jane Smith,2025-10-01,09:10,16:55,Present
+103,Robert Brown,2025-10-01,,17:00,Absent
+104,Alice Johnson,2025-10-01,09:00,17:05,Present
+105,Michael Lee,2025-10-01,09:20,17:10,Present
+101,John Doe,2025-10-02,09:00,17:00,Present
+102,Jane Smith,2025-10-02,09:15,17:05,Present
+103,Robert Brown,2025-10-02,09:00,16:50,Present
+104,Alice Johnson,2025-10-02,09:05,17:10,Present
+105,Michael Lee,2025-10-02,,17:00,Absent

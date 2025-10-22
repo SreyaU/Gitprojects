@@ -1,0 +1,74 @@
+WLAN TEST ENGINEER
+
+advanced WLAN test and automation engineer with end-to-end command over:
+
+Wi-Fi Standards & Protocol Stack (Wi-Fi 5–7, 802.11 a/b/g/n/ac/ax/be)
+
+Tools: Wireshark, Omnipeek, IxChariot, spectrum analyzers
+
+Debugging + Root Cause Analysis (RCA)
+
+System-Level Testing (throughput, roaming, mesh)
+
+Test automation using Python and Robot Framework
+
+Performance validation and stress test scenarios
+
+Cross-functional collaboration and high-pressure environment readiness
+
+
+🔰 Mentorship Roadmap Structure:
+Phase	Area	Description
+1	Wi-Fi Standards & Protocols	IEEE 802.11 stack, PHY-MAC behaviors, beacon, association, authentication, security (WPA2/WPA3), Wi-Fi 5/6/6E/7
+2	Tools Mastery	Wireshark, Omnipeek, IxChariot – packet capture, analysis, performance tests
+3	Debugging & RCA	Analyzing failures, logs, PCAPs, test results, kernel messages, chip-level logs
+4	System Testing & Benchmarking	Mesh, roaming, load/stress, interference simulation, test plan building
+5	Automation (Python + Robot)	Frameworks, libraries, utilities, test suite design, ADB, custom keywords
+6	Industry Interview Prep	Programming, problem solving, system thinking, scenario handling
+
+✅ Step 1: Wi-Fi Protocols and Standards
+🎯 Topics:
+Wi-Fi Generations Overview: Wi-Fi 4–7
+
+IEEE 802.11 Protocol Stack (MAC + PHY)
+
+Management, Control, Data Frames
+
+Wi-Fi Security: WPA2, WPA3, SAE, FT
+
+Connection Flow: Scan → Auth → Assoc → 4-Way Handshake → Data
+
+Roaming, Band Steering, OFDMA, MU-MIMO
+
+Regulatory domains, DFS, 6 GHz behavior
+
+🧠 Concepts to Master (Beginner to Advanced):
+What changes between Wi-Fi 5, 6, and 7 at PHY & MAC level?
+
+How OFDMA, MU-MIMO, BSS Coloring work?
+
+What is TWT? How does it save battery?
+
+What happens in each 802.11 state: Init, Auth, Assoc, Connected?
+
+Wi-Fi 6E/7: How do they utilize 6 GHz spectrum? Challenges?
+
+Frame Analysis: Identify Beacon, Probe Req/Rsp, Auth/Assoc frames
+
+📘 Lesson 1: Wi-Fi Generations (Basics to Advanced)
+✅ Part 1: Protocol Evolution Summary
+Generation	IEEE Std	Key Features	Frequency Bands
+Wi-Fi 4	802.11n	MIMO	2.4 & 5 GHz
+Wi-Fi 5	802.11ac	MU-MIMO DL	5 GHz
+Wi-Fi 6	802.11ax	OFDMA, BSS Coloring, MU-MIMO UL/DL, TWT	2.4 & 5 GHz
+Wi-Fi 6E	802.11ax	Wi-Fi 6 in 6 GHz band	6 GHz
+Wi-Fi 7	802.11be	320 MHz, Multi-Link Operation (MLO), 4K QAM	2.4/5/6 GHz
+
+✅ Part 2: Wi-Fi 6 vs Wi-Fi 7 — Application-Level Differences
+Feature	Wi-Fi 6	Wi-Fi 7
+Max Bandwidth	160 MHz	320 MHz
+OFDMA	Yes	Enhanced (with puncturing)
+QAM	1024-QAM	4096-QAM
+Multi-Link Operation	No	Yes
+Latency	Low	Ultra-low
+Target Devices	IoT, Mobile	VR/AR, Gaming, Low-latency

@@ -1,0 +1,46 @@
+
+from openpyxl import Workbook
+
+
+file_path = "text_file.txt"
+output_file = "Employee_Data_3.xlsx"
+
+try:
+    with open(file_path, 'r', encoding = 'utf-8') as file:
+        data = file.read().strip().split("\n")
+        # print("data is",data)
+        # print(type(data))
+        columns = []
+        records = []
+        for line in data:
+            # print("line is",line)
+            content = line.split(":")
+            # print(content)
+            if line == ' ':
+                pass
+            else:
+                if content[0] not in columns:
+                    columns.append(content[0])
+                records.append(content)
+        print("columns",columns)
+        print("records",records)
+except FileNotFoundError:
+    print("File does not exist or is in different path")
+except Exception as e:
+    print(f"An error occured : {e}")
+
+# Create Excel workbook
+wb = Workbook()
+ws = wb.active
+ws.title = "Employee Data"
+
+# Write headers
+ws.append(columns)
+
+# Write data rows
+for rec in records:
+    ws.append([rec for h in columns])
+
+# Save workbook
+wb.save(output_file)
+print(f"Workbook '{output_file}' created successfully.")

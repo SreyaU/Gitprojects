@@ -1,0 +1,35 @@
+2025-08-27 23:30:45,719 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 23:30:45,722 - INFO - connection status: True
+2025-08-27 23:30:45,726 - INFO - Successfully connected to Office5G
+2025-08-27 23:30:45,727 - INFO - Attempting to connect to wifi : Office 
+2025-08-27 23:30:45,728 - INFO - connection status: True
+2025-08-27 23:30:45,728 - INFO - Successfully connected to Office
+2025-08-27 23:30:45,729 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 23:30:45,730 - INFO - connection status: True
+2025-08-27 23:30:45,731 - INFO - Successfully connected to Home5G
+2025-08-27 23:31:27,974 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 23:31:27,975 - INFO - connection status: True
+2025-08-27 23:31:27,975 - INFO - Successfully connected to Office5G
+2025-08-27 23:31:27,975 - INFO - Attempting to connect to wifi : Office 
+2025-08-27 23:31:27,976 - INFO - connection status: False
+2025-08-27 23:31:27,976 - ERROR - Connection failed to Office
+2025-08-27 23:31:27,976 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 23:31:27,977 - INFO - connection status: False
+2025-08-27 23:31:27,977 - ERROR - Connection failed to Home5G
+2025-08-27 23:32:25,677 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 23:32:25,678 - INFO - connection status: False
+2025-08-27 23:32:25,678 - ERROR - Connection failed to Office5G
+2025-08-27 23:32:26,679 - INFO - Attempting to connect to wifi : Office 
+2025-08-27 23:32:26,680 - INFO - connection status: False
+2025-08-27 23:32:26,680 - ERROR - Connection failed to Office
+2025-08-27 23:32:27,681 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 23:32:27,682 - INFO - connection status: False
+2025-08-27 23:32:27,683 - ERROR - Connection failed to Home5G
+2025-08-27 23:42:23,967 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 23:42:23,968 - INFO - connection status: False
+2025-08-27 23:42:24,969 - INFO - Attempting to connect to wifi : Office 
+2025-08-27 23:42:24,969 - INFO - connection status: True
+2025-08-27 23:42:24,969 - INFO - Successfully connected to Office
+2025-08-27 23:42:25,970 - INFO - Attempting to connect to wifi : Home5G 
+2025-08-27 23:42:25,971 - INFO - connection status: True
+2025-08-27 23:42:25,971 - INFO - Successfully connected to Home5G

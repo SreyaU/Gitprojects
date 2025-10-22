@@ -1,0 +1,11 @@
+'''
+Write a script that renames files in bulk.
+Parse a CSV and print a summary.
+Move files into folders by type.
+
+Build a desktop automation that sorts files into folders (images, docs, PDFs).
+Real use: Clean up downloads/desktop automatically.
+
+nb: 
+- 
+'''

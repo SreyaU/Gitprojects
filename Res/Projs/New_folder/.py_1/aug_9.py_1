@@ -1,0 +1,50 @@
+from openpyxl import Workbook
+
+# Input text file path
+input_file = "text_file.txt"
+
+# Read and clean data
+with open(input_file, "r", encoding="utf-8") as f:
+    content = f.read().strip().split("\n")
+
+records = []
+record = {}
+
+for line in content:
+    line = line.strip()
+    if not line:
+        continue
+    if line.startswith("Name:"):
+        # Start of a new record
+        if record:
+            records.append(record)
+            record = {}
+        record["Name"] = line.replace("Name:", "").strip()
+    elif line.startswith("Email:"):
+        record["Email"] = line.replace("Email:", "").strip()
+    elif line.startswith("Date of Birth:"):
+        record["Date of Birth"] = line.replace("Date of Birth:", "").strip()
+    elif line.startswith("Department:") or line.startswith(":"):
+        record["Department"] = line.replace("Department:", "").replace(":", "").strip()
+
+# Append last record
+if record:
+    records.append(record)
+
+# Create Excel workbook
+wb = Workbook()
+ws = wb.active
+ws.title = "Employee Data"
+
+# Write headers
+headers = ["Name", "Email", "Date of Birth", "Department"]
+ws.append(headers)
+
+# Write data rows
+for rec in records:
+    ws.append([rec.get(h, "") for h in headers])
+
+# Save workbook
+output_file = "Employee Data.xlsx"
+wb.save("Employee Data.xlsx")
+print(f"Workbook '{output_file}' created successfully.")

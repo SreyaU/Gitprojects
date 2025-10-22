@@ -1,0 +1,4 @@
+INFO:root:App started
+WARNING:root:Low signal strength
+ERROR:root:Connection failed
+CRITICAL:root:System down

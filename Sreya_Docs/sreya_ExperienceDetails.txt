@@ -1,0 +1,140 @@
+Scope of the project -->
+
+1. WLAN Firmware Testing
+2. Android apk (WA/WI) feature testing for Zebra devices
+3. Automation testing covering Android and WLAN features.
+
+Technology --> Wi-fi IEEE 802.11 Standards, Android-WLAN automation
+
+Tools --> Wireshark, Pycharm, Polarion, Jira, Python , Robot framework
+
+Teamsize --> 4
+
+Project Activities -->
+
+1.  Firmware flashing and testing for Android OS versions A11, A13, A14, A15 for updated firmwares across different zebra devices including firmware version checks and grey-box testing.
+2.  Wireless Analyzer (WA) apk feature testing for 802.11 a/b/g/n/ac/ax protocols via ui- automation and manual with updated firmwares (BSPs) as part of CI/CD testing. 
+3.  Wireless Insights (WI) apk functionality and integration testing via EMM, UI across different zebra devices including long run stress and roam testing to ensure reliability and stability over different BSPs.
+4.  EMM enrollment and cloud integration support for Wireless Insights (WI) apk in zebra devices including validating cloud updates and log analysis.
+5.  Develop scripts to automate the testcases as per test case requirements using Robot framework in python.
+6.  Run automation test suites to identify issues, resolve and stabililise test suites.
+7.  Execute and validate manual as well as automation testcases as per the testplan.
+8.  Create testplans for executing  and validating testcases for new features introduced as per requirement and in POLARION .
+9.  Wireshark pcap files log analysis for the issues observed and testing.
+10. Raise observed issues as JIRA issues during testing.
+11. Automation suite enhancement to support automation testing with Aruba controller setup. 
+12.WLAN Protocol testing for Zebra android devices across os versions
+13.Client Project on Fusion WLAN WA/WI,
+14.Responsible for Testing the Functionality Wi-Fi Features and IEEE 802.11 (a/b/g/n/ac/ax/be) protocols for android Zebra technology devices with SD660, Qualcomm chipset.
+15.Worked on different WLAN features such as roaming scenarios, roamstress, 802.11 k/v/r, band preference, fast roaming, disconnect suppression,etc
+16.Perform Security Testing for WLAN devices, including WPA2/WPA3 Encryption, Access control, and Authentication protocols like RADIUS, 802.1x.
+17.Worked on various infrastructure such as CISCO, ARUBA
+18.Manual testing of 802.11 wireless protocols analysis using OmniPeek, Wireshark, tshark.
+19.Testing and verifying customer issues for device side or automation script issue and raising Jira. 
+20.Worked on automation scripts for WLAN features using Python and Robot frameworks.
+21. Analyse logcat logs to check for ANRs, crashes, memory issues or any other issues observed and report as repective JIRAs with analysis observations and necessary logs. 
+22.Worked on Log analyzer parsing to develop API to automate the process of analysing the logcat and capture the occurence of voice/roam events in WLAN along with event codes in order to confirm the successful behaviour.
+23.Use adb via cli for the firmware updates and troubleshooting for the zebra android devices
+
+====================
+Centre for Development of Telematics (C-DOT) | Graduate Trainee
+Apr 2023 – Apr 2024
+Led functional & integration testing of 4G/5G routers and Wi-Fi 5/6 Access Points using EMS GUI, CLI, and cellular module management.
+Conducted Wi-Fi bring-up and protocol testing on AP and router PCB boards, validating boot-up with U-Boot bootloader, firmware flashing, and OS loading.
+Performed performance/load testing & network monitoring using Iperf, Wireshark, and tcpdump.
+Developed & tested shell scripts, executed white-box test cases, and resolved bugs ensuring system reliability.
+Created user manuals, test reports, and documentation to maintain clarity and traceability.
+Hands-on with ARM-based modem devices, software/firmware flashing, and debugging bootloader issues.
+
+##Client Project (Zebra Technologies) | Android-WLAN Test Engineer
+Apr 2022 – Mar 2023
+Performed firmware flashing & validation on Android OS versions (A11–A15) across Zebra devices.
+Conducted WLAN protocol testing (802.11 a/b/g/n/ac/ax/be) including roaming (802.11 k/v/r), securities (WPA2/WPA3, RADIUS/802.1x) features.
+Tested Wireless Analyzer & Wireless Insights apps via manual, UI-automation, CI/CD pipelines, and EMM/cloud integration
+Developed & executed automation scripts in Python & Robot Framework; enhanced automation suites for WLAN features and Aruba controller setups.
+Analyzed Wireshark, OmniPeek and logcat logs for protocol issues, ANRs, crashes, and performance bottlenecks; raised/managed issues in JIRA.
+Worked on long-run stress, roaming, and security testing, ensuring compliance with IEEE 802.11 standards across Qualcomm-based devices.
+
+
+Android-WLAN Test Engineer | Client Project (Zebra Technologies)
+Performed firmware flashing and feature testing on Android (A11–A15) Zebra devices.
+Conducted WLAN protocol testing (802.11 a/b/g/n/ac/ax/be) on Qualcomm chipsets, covering roaming (k/v/r), WLAN security (WPA2/WPA3, RADIUS/802.1x) features.
+Tested Wireless Analyzer & Wireless Insights apps via manual, UI-automation for EMM/cloud integration as part of  CI/CD pipeline.
+Developed and enhanced Python & Robot Framework automation scripts to support WLAN feature testing, Aruba controller integration, and log analyzer parsing.
+Executed manual and automation test suites to identify, resolve, and stabilize issues; enhanced suites for scalability and reliability.
+Utilized Wireshark, OmniPeek and logcat for packet capture, log analysis; raised and tracked issues in JIRA with root cause reporting.
+Designed and executed test plans in Polarion for new WLAN/ANDROID OS updates, ensuring coverage of manual and automation test cases.
+Generated test reports on performing sanity/stability testing.
+Worked on infrastructure setups including Cisco and Aruba WLAN controllers to replicate enterprise network environments.
+
+⚡ Skills: Android Testing | WLAN Protocols (802.11 a/b/g/n/ac/ax/be) | Python | Robot Framework | adb | Wireshark | JIRA | Polarion | Qualcomm | Cisco/Aruba WLAN Controllers
+
+
+
+========================
+
+Client Project (Zebra Technologies) | Android-WLAN Test Engineer
+Apr 2022 – Mar 2023
+Performed firmware flashing and validation for Android OS (A11–A15) across Zebra devices.
+Conducted WLAN protocol testing (IEEE 802.11 a/b/g/n/ac/ax/be) on Qualcomm (SD660) chipsets, covering features such as roaming (802.11k/v/r), band preference, fast roaming, roam-stress, and disconnect suppression.
+Led Wireless Analyzer (WA) and Wireless Insights (WI) application testing, including functional, integration, UI-automation, and stress/roam testing across multiple BSP firmware versions as part of CI/CD pipelines.
+Validated EMM enrollment and cloud integration for WI app , ensuring cloud updates, stability, and log analysis for long-run reliability.
+
+
+Key Skills
+Testing: Functional Testing | Integration Testing | Automation | Grey-box & White-box Testing | CI/CD Validation
+Networking/WLAN: 802.11 (a/b/g/n/ac/ax/be) | Roaming (k/v/r) | WPA2/WPA3 | RADIUS | DHCP/DNS/TCP/UDP
+Tools & Scripting: Python | Robot Framework | Bash | adb | Polarion | JIRA | Wireshark | OmniPeek | tshark | Iperf | tcpdump
+Systems: Android (A11–A15) | ARM-based Devices | U-Boot Bootloader | 4G/5G Routers | Wi-Fi 5/6 Access Points | Cisco/Aruba WLAN Infrastructure
+
+===============
+
+Android-WLAN Test Engineer | Client Project (Zebra Technologies)
+
+Performed firmware flashing and validation for Android OS (A11–A15) across Zebra devices, including firmware version checks, grey-box testing, and troubleshooting using adb.
+Conducted WLAN protocol testing (IEEE 802.11 a/b/g/n/ac/ax/be) on Qualcomm (SD660) chipsets, covering features such as roaming (802.11k/v/r), band preference, fast roaming, roam-stress, and disconnect suppression.
+Validated updated Wireless Analyzer (WA) and Wireless Insights (WI) APKs along with BSP firmware builds as part of CI/CD pipeline, performing regression, functional, UI-automation, stress, and roaming tests across Android OS versions.
+Validated EMM enrollment and cloud integration for WI app, ensuring cloud updates, stability, and log analysis for long-run reliability.
+Performed WLAN security testing, including WPA2/WPA3 encryption, authentication protocols (RADIUS, 802.1x), and access control.
+Designed and executed test plans in Polarion for new WLAN features and Android OS updates, ensuring coverage of manual and automation test cases.
+Developed and enhanced Python & Robot Framework automation scripts to support WLAN feature testing, Aruba controller integration, and log analyzer parsing.
+Executed automation test suites to identify, resolve, and stabilize issues; enhanced suites for scalability and reliability.
+Utilized Wireshark, OmniPeek, and tshark for packet capture and protocol analysis to debug WLAN performance and functional issues.
+Analyzed adb logcat outputs for ANRs, crashes, memory leaks, and WLAN-related issues; automated log parsing APIs to capture roam/voice events with event codes.
+Investigated and validated customer-reported issues (device-side and automation-side), raising and tracking defects in JIRA with detailed logs and root cause observations.
+Collaborated on infrastructure setups including Cisco and Aruba WLAN controllers to replicate enterprise network environments.
+
+⚡ Key Skills: Android Testing | WLAN Protocols (802.11 a/b/g/n/ac/ax/be) | Automation (Python, Robot Framework) | Firmware Flashing | adb | Wireshark | OmniPeek | tshark | JIRA | Polarion | Qualcomm chipsets | Cisco & Aruba WLAN Controllers | Security Testing (WPA2/WPA3, RADIUS, 802.1x)
+
+
+======
+
+Android-WLAN Test Engineer | Client Project (Zebra Technologies)
+Performed firmware flashing and validation for Android OS (A11–A15) across Zebra devices.
+Conducted WLAN protocol testing (802.11 a/b/g/n/ac/ax/be) on Qualcomm chipsets, validating features like roaming (802.11k/v/r), band preference, fast roaming, and disconnect suppression.
+Led testing of Wireless Analyzer (WA) and Wireless Insights (WI) apps, covering functional, integration, UI automation, and stress/roam testing across multiple BSP firmware versions in CI/CD pipelines.
+Designed and executed test plans in Polarion for new WLAN features and Android OS updates, ensuring full coverage of manual and automated test cases.
+Developed and enhanced Python & Robot Framework automation scripts, including Aruba controller integration and log analyzer parsing to capture WLAN roam/voice events.
+Utilized Wireshark, OmniPeek, and tshark for WLAN packet analysis, while analyzing adb logcat for ANRs, crashes, and memory issues; raised and tracked issues in JIRA with detailed logs.
+Performed WLAN security testing (WPA2/WPA3, RADIUS, 802.1x) and collaborated on Cisco & Aruba controller setups to replicate enterprise network environments.
+
+⚡ Key Skills: Android Testing | WLAN Protocols (802.11 a/b/g/n/ac/ax/be) | Python | Robot Framework | Firmware Flashing | adb | Wireshark | OmniPeek | tshark | Polarion | JIRA | Qualcomm Chipsets | Cisco & Aruba WLAN Controllers | Security Testing (WPA2/WPA3, RADIUS, 802.1x)
+
+
+
+=================
+Perfect ✅ — here are a few strong resume headline/summary one-liners tailored for automation, WLAN, and Android testing roles. You can pick one or mix keywords depending on the job description:
+
+🔹 Option 1 (Balanced, General):
+“Android-WLAN Test Engineer with hands-on expertise in firmware flashing, WLAN protocol testing (802.11 a/b/g/n/ac/ax/be), and Python/Robot framework automation.”
+
+🔹 Option 2 (Automation Focus):
+“Automation & WLAN Test Engineer skilled in developing Python/Robot test suites, CI/CD validation, and wireless protocol testing across Android (A11–A15) devices.”
+
+🔹 Option 3 (Networking/Protocols Highlight):
+“WLAN & Android Testing Specialist with experience in Wi-Fi protocols, roaming (802.11 k/v/r), WPA2/WPA3 security, and log analysis using Wireshark & adb.”
+
+🔹 Option 4 (ATS Keyword Heavy):
+“Experienced Test Engineer | Android Testing | WLAN Protocols (802.11 a/b/g/n/ac/ax/be) | Python Automation | adb | Wireshark | Robot Framework | JIRA.”
+
+================

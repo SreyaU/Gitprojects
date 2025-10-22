@@ -1,0 +1,14 @@
+2025-08-27 19:11:00,904 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:12:32,466 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:12:32,467 - INFO - Successfully connected to Office5G
+2025-08-27 19:12:33,467 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:14:13,338 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:14:13,339 - INFO - Successfully connected to Office5G
+2025-08-27 19:14:14,339 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:16:12,477 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:18:50,171 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:19:06,240 - INFO - Attempting to connect to wifi : Office5G 
+2025-08-27 19:19:06,241 - INFO - Successfully connected to Office5G
+2025-08-27 19:19:07,241 - INFO - Attempting to connect to wifi : Office2.4G 
+2025-08-27 19:19:07,242 - INFO - Successfully connected to Office2.4G
+2025-08-27 19:19:08,242 - INFO - Attempting to connect to wifi : Home5G 
